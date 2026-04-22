@@ -247,6 +247,27 @@ const news = defineCollection({
   },
 });
 
+const legal = defineCollection({
+  name: "legal",
+  directory: "content/legal",
+  include: "**/*.{md,mdx}",
+  schema: z.object({
+    title: z.string(),
+    content: z.string(),
+  }),
+  transform: async (document, context) => {
+    const { locale, slug } = getLocalizedContentMeta(document._meta.path);
+
+    return {
+      ...document,
+      slug,
+      locale,
+      contentAssetMap: createContentAssetMap("content/legal", document),
+      ...(await compileDocument(context, document)),
+    };
+  },
+});
+
 const works = defineCollection({
   name: "works",
   directory: "content/works",
@@ -288,5 +309,5 @@ const works = defineCollection({
 });
 
 export default defineConfig({
-  collections: [news, works],
+  collections: [news, legal, works],
 });

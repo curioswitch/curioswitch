@@ -6,3 +6,4 @@ node_modules
 dist
 .tanstack
 .firebase
+routeTree.gen.ts

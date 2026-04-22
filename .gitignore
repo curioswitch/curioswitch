@@ -1,0 +1,8 @@
+.envrc
+.idea
+
+node_modules
+.content-collections
+dist
+.tanstack
+.firebase

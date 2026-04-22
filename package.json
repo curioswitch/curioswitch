@@ -1,0 +1,57 @@
+{
+  "name": "curioswitch",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "scripts": {
+    "dev": "vite dev --port 3000",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "format": "biome check --write .",
+    "lint": "biome check ."
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "@tanstack/react-devtools": "^0.7.11",
+    "@tanstack/react-router": "^1.166.7",
+    "@tanstack/react-router-devtools": "^1.166.7",
+    "@tanstack/react-router-ssr-query": "^1.166.7",
+    "@tanstack/react-start": "^1.166.7",
+    "@tanstack/router-plugin": "^1.166.7",
+    "embla-carousel-react": "^9.0.0-rc01",
+    "embla-carousel": "^9.0.0-rc01",
+    "lucide-react": "^0.545.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-icons": "^5.6.0",
+    "tailwindcss": "^4.2.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.2",
+    "@content-collections/core": "^0.13.1",
+    "@content-collections/markdown": "^0.1.4",
+    "@content-collections/mdx": "^0.1.6",
+    "@content-collections/vite": "^0.2.9",
+    "@inlang/paraglide-js": "^2.14.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "@tanstack/devtools-vite": "^0.3.12",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^22.19.15",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "firebase-tools": "^15.15.0",
+    "jsdom": "^27.4.0",
+    "remark-gfm": "^4.0.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.8",
+    "vite-imagetools": "^10.0.0",
+    "vitest": "^3.2.4",
+    "zod": "^4.3.6"
+  }
+}

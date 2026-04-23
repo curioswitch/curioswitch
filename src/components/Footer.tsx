@@ -18,7 +18,7 @@ export default function Footer() {
         <div>
           <Link
             to="/contact"
-            className="inline-flex rounded-full bg-gray-100 px-6 py-3 text-black transition hover:bg-gray-300"
+            className="inline-flex rounded-full bg-gray-100 px-6 py-3 text-black transition hover:bg-gray-800"
           >
             {m.footer_contact_button()}
           </Link>

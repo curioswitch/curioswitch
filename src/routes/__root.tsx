@@ -5,6 +5,7 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import imgFavicon from "../assets/favicon.png";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { createBaseMetadata } from "../lib/metadata";
 import { getLocale } from "../paraglide/runtime";
 import appCss from "../styles.css?url";
 
@@ -17,37 +18,41 @@ export const Route = createRootRoute({
     }
   },
 
-  head: () => ({
-    meta: [
-      {
-        charSet: "utf-8",
-      },
-      {
-        name: "viewport",
-        content: "width=device-width, initial-scale=1",
-      },
-      {
-        title: "CurioSwitch",
-      },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      {
-        rel: "icon",
-        href: imgFavicon,
-        type: "image/png",
-      },
-    ],
-  }),
+  head: ({ matches }) => {
+    const currentPathname = matches[matches.length - 1]?.pathname ?? "/";
+
+    return {
+      meta: [
+        {
+          charSet: "utf-8",
+        },
+        {
+          name: "viewport",
+          content: "width=device-width, initial-scale=1",
+        },
+        ...createBaseMetadata({
+          pathname: currentPathname,
+        }).meta,
+      ],
+      links: [
+        {
+          rel: "stylesheet",
+          href: appCss,
+        },
+        {
+          rel: "icon",
+          href: imgFavicon,
+          type: "image/png",
+        },
+      ],
+    };
+  },
   shellComponent: RootDocument,
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={getLocale()} suppressHydrationWarning>
+    <html lang={getLocale()}>
       <head>
         <HeadContent />
       </head>

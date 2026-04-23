@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 import type { IconType } from "react-icons";
 import {
   MdAccessibility,
@@ -37,36 +38,34 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-function ServiceListItem({ service }: { service: string }) {
+function ServiceListItem({ service, href }: { service: string; href: string }) {
   return (
-    <li className="flex items-center gap-2">
-      <MdArrowDropDownCircle
-        className="-rotate-90 text-gray-400"
-        aria-hidden="true"
-      />
-      <span>{service}</span>
-    </li>
+    <Link to={href} className="transition hover:text-gray-500">
+      <li className="flex items-center gap-2">
+        <MdArrowDropDownCircle
+          className="-rotate-90 text-gray-400"
+          aria-hidden="true"
+        />
+        <span>{service}</span>
+      </li>
+    </Link>
   );
 }
 
 function ServiceList({
   Icon,
   category,
-  services,
+  children,
 }: {
   Icon: IconType;
   category: string;
-  services: string[];
+  children: ReactNode;
 }) {
   return (
     <article className="flex flex-col gap-4">
       <Icon size={40} aria-hidden="true" />
       <h2 className="text-xl">{category}</h2>
-      <ul className="space-y-2 text-gray-700">
-        {services.map((service) => (
-          <ServiceListItem key={service} service={service} />
-        ))}
-      </ul>
+      <ul className="space-y-2 text-gray-700 flex flex-col">{children}</ul>
     </article>
   );
 }
@@ -112,21 +111,25 @@ function CapabilityCard({
   alt,
   picture,
   title,
+  href,
 }: {
   alt: string;
   picture: typeof picServicePlanning;
   title: string;
+  href: string;
 }) {
   return (
-    <article className="overflow-hidden rounded-xl border border-gray-200 bg-white">
-      <Picture
-        picture={picture}
-        className="block w-full"
-        alt={alt}
-        sizePreset="threeColumn"
-      />
-      <h3 className="p-8 text-lg">{title}</h3>
-    </article>
+    <Link to={href} className="group block">
+      <article className="overflow-hidden rounded-xl border border-gray-200 bg-white transition-[border-color,box-shadow] duration-200 group-hover:border-gray-400">
+        <Picture
+          picture={picture}
+          className="block w-full"
+          alt={alt}
+          sizePreset="threeColumn"
+        />
+        <h3 className="p-8 text-lg">{title}</h3>
+      </article>
+    </Link>
   );
 }
 
@@ -157,26 +160,42 @@ function Home() {
             <ServiceList
               category={m.home_overview_strategy_title()}
               Icon={MdWeb}
-              services={[m.home_overview_strategy_service_1()]}
-            />
+            >
+              <ServiceListItem
+                service={m.home_overview_strategy_service_1()}
+                href="/services/planning"
+              />
+            </ServiceList>
             <ServiceList
               category={m.home_overview_uiux_title()}
               Icon={MdSearch}
-              services={[
-                m.home_overview_uiux_service_1(),
-                m.home_overview_uiux_service_2(),
-                m.home_overview_uiux_service_3(),
-              ]}
-            />
+            >
+              <ServiceListItem
+                service={m.home_overview_uiux_service_1()}
+                href="/services/usertest"
+              />
+              <ServiceListItem
+                service={m.home_overview_uiux_service_2()}
+                href="/services/prototyping"
+              />
+              <ServiceListItem
+                service={m.home_overview_uiux_service_3()}
+                href="/services/uiux"
+              />
+            </ServiceList>
             <ServiceList
               category={m.home_overview_engineering_title()}
               Icon={MdAccessibility}
-              services={[
-                m.home_overview_engineering_service_1(),
-                m.home_overview_engineering_service_2(),
-                m.home_overview_engineering_service_3(),
-              ]}
-            />
+            >
+              <ServiceListItem
+                service={m.home_overview_engineering_service_1()}
+                href="/services/engineering"
+              />
+              <ServiceListItem
+                service={m.home_overview_engineering_service_2()}
+                href="/services/oss"
+              />
+            </ServiceList>
           </div>
         </section>
 
@@ -227,31 +246,37 @@ function Home() {
               alt={m.home_capability_planning_title()}
               picture={picServicePlanning}
               title={m.home_capability_planning_title()}
+              href="/services/planning"
             />
             <CapabilityCard
               alt={m.home_capability_prototyping_title()}
               picture={picServicePrototyping}
               title={m.home_capability_prototyping_title()}
+              href="/services/prototyping"
             />
             <CapabilityCard
               alt={m.home_capability_engineering_title()}
               picture={picServiceEngineering}
               title={m.home_capability_engineering_title()}
+              href="/services/engineering"
             />
             <CapabilityCard
               alt={m.home_capability_uiux_title()}
               picture={picServiceUidesign}
               title={m.home_capability_uiux_title()}
+              href="/services/uiux"
             />
             <CapabilityCard
               alt={m.home_capability_user_testing_title()}
               picture={picServiceUserTest}
               title={m.home_capability_user_testing_title()}
+              href="/services/usertest"
             />
             <CapabilityCard
               alt={m.home_capability_open_source_title()}
               picture={picServiceOss}
               title={m.home_capability_open_source_title()}
+              href="/services/oss"
             />
           </div>
         </section>

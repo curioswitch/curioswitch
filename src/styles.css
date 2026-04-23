@@ -5,18 +5,10 @@
 
 @theme {
   --font-sans:
-    "Inter Variable",
-    Inter,
-    "ヒラギノ角ゴ W5 JIS2004",
-    "Hiragino Sans",
-    system-ui,
-    sans-serif;
+    "Inter Variable", Inter, "ヒラギノ角ゴ W5 JIS2004", "Hiragino Sans",
+    system-ui, sans-serif;
   --font-paragraph:
-    "Lato",
-    "ヒラギノ角ゴ W3 JIS2004",
-    "Hiragino Sans",
-    system-ui,
-    sans-serif;
+    "Lato", "ヒラギノ角ゴ W3 JIS2004", "Hiragino Sans", system-ui, sans-serif;
 }
 
 body {

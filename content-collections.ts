@@ -15,7 +15,7 @@ const LOCALE_SUFFIX = /\.(ja|en)$/;
 const NEWS_DATE_PREFIX = /^\d{4}-\d{2}-\d{2}-/;
 const NUMERIC_PREFIX = /^\d+-/;
 const WORKS_EXCERPT_LENGTH = 180;
-const CONTENT_HERO_PICTURE_QUERY =
+const CONTENT_PICTURE_QUERY =
   "w=640;960;1280;1600;2048&format=avif;webp;jpg&as=picture";
 
 function getLocalizedContentMeta(
@@ -142,12 +142,12 @@ function resolvePictureAssetImport(
 
   if (!importPath) {
     throw new Error(
-      `Hero image must be a local asset import: ${collectionDirectory}/${document._meta.directory}/${assetPath}`,
+      `Image must be a local asset import: ${collectionDirectory}/${document._meta.directory}/${assetPath}`,
     );
   }
 
   return createDefaultImport<ImageToolsPicture>(
-    `${importPath}?${CONTENT_HERO_PICTURE_QUERY}`,
+    `${importPath}?${CONTENT_PICTURE_QUERY}`,
   );
 }
 
@@ -186,7 +186,7 @@ function createContentAssetMap(
   return Object.fromEntries(
     extractContentAssetPaths(document.content).map((assetPath) => [
       assetPath,
-      resolveAssetImport(collectionDirectory, document, assetPath),
+      resolvePictureAssetImport(collectionDirectory, document, assetPath),
     ]),
   );
 }

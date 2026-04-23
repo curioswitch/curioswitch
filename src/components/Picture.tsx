@@ -42,7 +42,9 @@ export const PICTURE_SIZE_PRESETS = {
 
 export type PictureSizePreset = keyof typeof PICTURE_SIZE_PRESETS;
 
-function serializeSizes(sizes?: PictureSizes): string | undefined {
+export function serializePictureSizes(
+  sizes?: PictureSizes,
+): string | undefined {
   if (!sizes) {
     return undefined;
   }
@@ -83,7 +85,7 @@ export function Picture({
   sizes?: PictureSizes;
   sizePreset?: PictureSizePreset;
 }) {
-  const resolvedSizes = serializeSizes(
+  const resolvedSizes = serializePictureSizes(
     sizes ?? (sizePreset ? PICTURE_SIZE_PRESETS[sizePreset] : undefined),
   );
   const resolvedLoading = loading ?? (priority ? "eager" : "lazy");

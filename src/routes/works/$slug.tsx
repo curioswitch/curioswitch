@@ -4,6 +4,7 @@ import { CollectionContent } from "../../components/CollectionContent";
 import { ContentEntryPage } from "../../components/PageLayout";
 import { Picture } from "../../components/Picture";
 import { findLocalizedWork } from "../../lib/content";
+import { createContentMetadata } from "../../lib/metadata";
 import { getLocale } from "../../paraglide/runtime";
 
 export const Route = createFileRoute("/works/$slug")({
@@ -16,6 +17,16 @@ export const Route = createFileRoute("/works/$slug")({
     }
 
     return work;
+  },
+  head: ({ loaderData }) => {
+    if (!loaderData) {
+      return {};
+    }
+
+    return createContentMetadata({
+      image: loaderData.heroSocialImage,
+      title: loaderData.title,
+    });
   },
   component: WorkPage,
 });

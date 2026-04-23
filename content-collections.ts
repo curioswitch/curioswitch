@@ -17,6 +17,15 @@ const NUMERIC_PREFIX = /^\d+-/;
 const WORKS_EXCERPT_LENGTH = 180;
 const CONTENT_PICTURE_QUERY =
   "w=640;960;1280;1600;2048&format=avif;webp;jpg&as=picture";
+const CONTENT_SOCIAL_IMAGE_QUERY =
+  "w=1200&h=630&fit=cover&position=attention&flatten&background=white&format=jpeg&as=metadata";
+
+type SocialImageMetadata = {
+  format?: string;
+  height: number;
+  src: string;
+  width: number;
+};
 
 function getLocalizedContentMeta(
   path: string,
@@ -129,6 +138,28 @@ function resolvePictureAssetImport(
   );
 }
 
+function resolveSocialImageAssetImport(
+  collectionDirectory: string,
+  document: { _meta: { directory: string } },
+  assetPath: string,
+) {
+  const importPath = resolveRelativeAssetImportPath(
+    collectionDirectory,
+    document,
+    assetPath,
+  );
+
+  if (!importPath) {
+    throw new Error(
+      `Image must be a local asset import: ${collectionDirectory}/${document._meta.directory}/${assetPath}`,
+    );
+  }
+
+  return createDefaultImport<SocialImageMetadata>(
+    `${importPath}?${CONTENT_SOCIAL_IMAGE_QUERY}`,
+  );
+}
+
 function extractContentAssetPaths(content: string) {
   const matches = new Set<string>();
   const patterns = [
@@ -215,6 +246,11 @@ const news = defineCollection({
         document,
         heroImage,
       ),
+      heroSocialImage: resolveSocialImageAssetImport(
+        "content/news",
+        document,
+        heroImage,
+      ),
       contentAssetMap: createContentAssetMap("content/news", document),
       ...(await compileDocument(context, document)),
     };
@@ -263,6 +299,11 @@ const works = defineCollection({
       slug,
       locale,
       heroPicture: resolvePictureAssetImport(
+        "content/works",
+        document,
+        heroImage,
+      ),
+      heroSocialImage: resolveSocialImageAssetImport(
         "content/works",
         document,
         heroImage,

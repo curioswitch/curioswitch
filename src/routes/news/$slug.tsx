@@ -4,6 +4,7 @@ import { CollectionContent } from "../../components/CollectionContent";
 import { ContentEntryPage } from "../../components/PageLayout";
 import { Picture } from "../../components/Picture";
 import { findLocalizedNews } from "../../lib/content";
+import { createContentMetadata } from "../../lib/metadata";
 import { getLocale } from "../../paraglide/runtime";
 
 export const Route = createFileRoute("/news/$slug")({
@@ -14,6 +15,16 @@ export const Route = createFileRoute("/news/$slug")({
       throw notFound();
     }
     return article;
+  },
+  head: ({ loaderData }) => {
+    if (!loaderData) {
+      return {};
+    }
+
+    return createContentMetadata({
+      image: loaderData.heroSocialImage,
+      title: loaderData.title,
+    });
   },
   component: Article,
 });

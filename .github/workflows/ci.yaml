@@ -15,6 +15,7 @@ permissions:
 env:
   GCP_PROJECT_ID: ${{ startsWith(github.ref_name, 'release/') && vars.GCP_PROJECT_ID_PROD || vars.GCP_PROJECT_ID_DEV }}
   GCP_PROJECT_NUMBER: ${{ startsWith(github.ref_name, 'release/') && vars.GCP_PROJECT_NUMBER_PROD || vars.GCP_PROJECT_NUMBER_DEV }}
+  VITE_SITE_URL: ${{ startsWith(github.ref_name, 'release/') && 'https://curioswitch.org' || 'https://alpha.curioswitch.org' }}
 
 jobs:
   check:

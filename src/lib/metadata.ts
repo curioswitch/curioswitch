@@ -85,18 +85,24 @@ export function createBaseMetadata({ pathname }: { pathname: string }) {
 }
 
 export function createContentMetadata({
+  description,
   image,
   title,
 }: {
+  description: string;
   image: SocialImageMetadata;
   title: string;
 }) {
   return {
     meta: [
       { title },
+      { name: "description", content: description },
       { property: "og:title", content: title },
+      { property: "og:description", content: description },
       ...createSocialImageMeta(image, title, "og"),
+      { name: "twitter:card", content: TWITTER_CARD },
       { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
       ...createSocialImageMeta(image, title, "twitter"),
     ] satisfies HeadMeta[],
   };

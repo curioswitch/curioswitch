@@ -22,6 +22,7 @@ export const Route = createFileRoute("/news/$slug")({
     }
 
     return createContentMetadata({
+      description: loaderData.excerpt,
       image: loaderData.heroSocialImage,
       title: loaderData.title,
     });

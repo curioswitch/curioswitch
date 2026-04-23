@@ -1,2 +1,20 @@
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource/lato/400.css";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans:
+    "Inter Variable", Inter, "ヒラギノ角ゴ W5 JIS2004", "Hiragino Sans",
+    system-ui, sans-serif;
+  --font-paragraph:
+    "Lato", "ヒラギノ角ゴ W3 JIS2004", "Hiragino Sans", system-ui, sans-serif;
+}
+
+body {
+  font-feature-settings: "palt";
+}
+
+p {
+  font-family: var(--font-paragraph);
+}

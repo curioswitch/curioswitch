@@ -32,7 +32,7 @@
         ]
       },
       {
-        "source": "/assets/**/*.@(avif|css|js|jpg|jpeg|gif|ogg|png|svg|webp)",
+        "source": "/assets/**/*.@(avif|css|js|jpg|jpeg|gif|ogg|png|svg|webp|woff|woff2|ttf|eot)",
         "headers": [
           {
             "key": "Cache-Control",

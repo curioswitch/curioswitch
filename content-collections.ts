@@ -107,28 +107,6 @@ function resolveRelativeAssetImportPath(
   return importPath;
 }
 
-function resolveAssetImport(
-  collectionDirectory: string,
-  document: { _meta: { directory: string } },
-  assetPath: string | undefined,
-) {
-  if (!assetPath) {
-    return assetPath;
-  }
-
-  const importPath = resolveRelativeAssetImportPath(
-    collectionDirectory,
-    document,
-    assetPath,
-  );
-
-  if (!importPath) {
-    return assetPath;
-  }
-
-  return createDefaultImport<string>(importPath);
-}
-
 function resolvePictureAssetImport(
   collectionDirectory: string,
   document: { _meta: { directory: string } },
@@ -225,21 +203,17 @@ const news = defineCollection({
     const { locale, slug } = getLocalizedContentMeta(document._meta.path, {
       stripDatePrefix: true,
     });
+    const { heroImage, ...documentWithoutHeroImage } = document;
 
     return {
-      ...document,
+      ...documentWithoutHeroImage,
       slug,
       locale,
       pubDate: new Date(document.pubDate).toISOString(),
-      heroImage: resolveAssetImport(
-        "content/news",
-        document,
-        document.heroImage,
-      ),
       heroPicture: resolvePictureAssetImport(
         "content/news",
         document,
-        document.heroImage,
+        heroImage,
       ),
       contentAssetMap: createContentAssetMap("content/news", document),
       ...(await compileDocument(context, document)),
@@ -282,20 +256,16 @@ const works = defineCollection({
     const { locale, slug } = getLocalizedContentMeta(document._meta.path, {
       stripNumericPrefix: true,
     });
+    const { heroImage, ...documentWithoutHeroImage } = document;
 
     return {
-      ...document,
+      ...documentWithoutHeroImage,
       slug,
       locale,
-      heroImage: resolveAssetImport(
-        "content/works",
-        document,
-        document.heroImage,
-      ),
       heroPicture: resolvePictureAssetImport(
         "content/works",
         document,
-        document.heroImage,
+        heroImage,
       ),
       contentAssetMap: createContentAssetMap("content/works", document),
       order: getNumericPrefixOrder(document._meta.path),

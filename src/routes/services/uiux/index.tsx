@@ -30,13 +30,17 @@ function RouteComponent() {
           <h2 className="whitespace-pre-line">
             {m.service_uiux_section_1_title()}
           </h2>
-          <p className="whitespace-pre-line">{m.service_uiux_section_1_body()}</p>
+          <p className="whitespace-pre-line">
+            {m.service_uiux_section_1_body()}
+          </p>
         </div>
         <div className="prose xl:max-w-[70%]">
           <h2 className="whitespace-pre-line">
             {m.service_uiux_section_2_title()}
           </h2>
-          <p className="whitespace-pre-line">{m.service_uiux_section_2_body()}</p>
+          <p className="whitespace-pre-line">
+            {m.service_uiux_section_2_body()}
+          </p>
         </div>
         <p className="my-10 whitespace-pre-line text-lg leading-9">
           {m.service_uiux_closing()}

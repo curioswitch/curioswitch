@@ -14,7 +14,9 @@ function RouteComponent() {
     <main className="bg-white">
       <PageIntro
         title={m.home_capability_open_source_title()}
-        description={<p className="whitespace-pre-line">{m.service_oss_description()}</p>}
+        description={
+          <p className="whitespace-pre-line">{m.service_oss_description()}</p>
+        }
       />
       <div className="flex flex-col gap-10 p-10 lg:p-20 lg:px-32">
         <Picture

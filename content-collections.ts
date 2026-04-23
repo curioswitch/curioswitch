@@ -14,7 +14,7 @@ import { z } from "zod";
 const LOCALE_SUFFIX = /\.(ja|en)$/;
 const NEWS_DATE_PREFIX = /^\d{4}-\d{2}-\d{2}-/;
 const NUMERIC_PREFIX = /^\d+-/;
-const WORKS_EXCERPT_LENGTH = 180;
+const CONTENT_EXCERPT_LENGTH = 180;
 const CONTENT_PICTURE_QUERY =
   "w=640;960;1280;1600;2048&format=avif;webp;jpg&as=picture";
 const CONTENT_SOCIAL_IMAGE_QUERY =
@@ -252,6 +252,10 @@ const news = defineCollection({
         heroImage,
       ),
       contentAssetMap: createContentAssetMap("content/news", document),
+      excerpt: truncateText(
+        markdownToPlainText(document.content),
+        CONTENT_EXCERPT_LENGTH,
+      ),
       ...(await compileDocument(context, document)),
     };
   },
@@ -312,7 +316,7 @@ const works = defineCollection({
       order: getNumericPrefixOrder(document._meta.path),
       excerpt: truncateText(
         markdownToPlainText(document.content),
-        WORKS_EXCERPT_LENGTH,
+        CONTENT_EXCERPT_LENGTH,
       ),
       ...(await compileDocument(context, document)),
     };

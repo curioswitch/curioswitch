@@ -24,6 +24,7 @@ export const Route = createFileRoute("/works/$slug")({
     }
 
     return createContentMetadata({
+      description: loaderData.excerpt,
       image: loaderData.heroSocialImage,
       title: loaderData.title,
     });

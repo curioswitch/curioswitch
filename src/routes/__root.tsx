@@ -1,6 +1,8 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import interLatinWghtNormal from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
+import latoLatin400Normal from "@fontsource/lato/files/lato-latin-400-normal.woff2?url";
 
 import imgFavicon from "../assets/favicon.png";
 import Footer from "../components/Footer";
@@ -38,6 +40,20 @@ export const Route = createRootRoute({
         {
           rel: "stylesheet",
           href: appCss,
+        },
+        {
+          rel: "preload",
+          href: interLatinWghtNormal,
+          as: "font",
+          type: "font/woff2",
+          crossOrigin: "anonymous",
+        },
+        {
+          rel: "preload",
+          href: latoLatin400Normal,
+          as: "font",
+          type: "font/woff2",
+          crossOrigin: "anonymous",
         },
         {
           rel: "icon",

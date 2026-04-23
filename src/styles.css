@@ -19,6 +19,10 @@
     sans-serif;
 }
 
+body {
+  font-feature-settings: "palt";
+}
+
 p {
   font-family: var(--font-paragraph);
 }

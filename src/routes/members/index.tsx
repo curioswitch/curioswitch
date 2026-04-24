@@ -128,7 +128,7 @@ function MemberCard({
   title,
 }: MemberProfile) {
   return (
-    <article className="border-t border-gray-100 p-10 lg:p-20 lg:px-32">
+    <article className="page-gutter-wide border-t border-gray-100 py-10 lg:py-20">
       <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(20rem,1fr)]">
         <div className="order-2 lg:order-1">
           <header className="flex flex-col gap-3">

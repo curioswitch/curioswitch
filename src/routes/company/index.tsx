@@ -28,33 +28,33 @@ function RouteComponent() {
         priority
         sizePreset="fullWidth"
       />
-      <section className="grid gap-4 p-10 md:gap-8 lg:grid-cols-[1fr_9fr_6fr] lg:p-24">
+      <section className="page-gutter-wide grid gap-4 py-10 md:gap-8 lg:grid-cols-[1fr_9fr_6fr] lg:py-24">
         <p className="text-sm font-medium tracking-[0.18em] text-gray-500 uppercase whitespace-nowrap">
           {m.company_mission_label()}
         </p>
         <div className="flex flex-col gap-6 md:gap-12">
-          <h2 className="text-3xl font-semibold whitespace-pre-line lg:text-6xl">
+          <h2 className="text-3xl lg:text-6xl font-medium whitespace-pre-line">
             {m.company_mission_title()}
           </h2>
           <p className="text-sm lg:text-base">{m.company_mission_summary()}</p>
         </div>
-        <p className="text-sm leading-7 text-gray-600 whitespace-pre-line lg:text-base">
+        <p className="text-sm leading-7 text-gray-600 whitespace-pre-line">
           {m.company_mission_body()}
         </p>
         <p className="text-sm font-medium tracking-[0.18em] text-gray-500 uppercase whitespace-nowrap">
           {m.company_vision_label()}
         </p>
         <div className="flex flex-col gap-12">
-          <h2 className="text-3xl font-semibold whitespace-pre-line lg:text-6xl">
+          <h2 className="text-3xl lg:text-6xl font-medium whitespace-pre-line">
             {m.company_vision_title()}
           </h2>
           <p className="text-sm lg:text-base">{m.company_vision_summary()}</p>
         </div>
-        <p className="text-sm leading-7 text-gray-600 whitespace-pre-line lg:text-base">
+        <p className="text-sm leading-7 text-gray-600 whitespace-pre-line">
           {m.company_vision_body()}
         </p>
       </section>
-      <section className="border-t border-gray-100 p-10 lg:p-20 lg:px-32">
+      <section className="page-gutter-wide border-t border-gray-100 py-10 lg:py-20">
         <header>
           <h2 className="text-4xl">{m.company_message_heading()}</h2>
         </header>
@@ -77,7 +77,7 @@ function RouteComponent() {
           </div>
         </div>
       </section>
-      <section className="border-t border-gray-100 p-10 lg:p-20 lg:px-32">
+      <section className="page-gutter-wide border-t border-gray-100 py-10 lg:py-20">
         <header>
           <h2 className="text-4xl">{m.company_overview_heading()}</h2>
         </header>

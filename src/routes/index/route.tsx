@@ -138,7 +138,7 @@ function Home() {
 
   return (
     <main className="min-h-screen bg-orange-400">
-      <section className="relative flex flex-col justify-end rounded-bl-4xl bg-white px-6 pb-10 md:min-h-140 md:px-20 md:pb-20">
+      <section className="page-gutter relative flex flex-col justify-end rounded-bl-4xl bg-white pb-10 md:min-h-140 md:pb-20">
         <div className="flex max-w-4xl flex-col gap-6 md:gap-8">
           <h1 className="text-5xl font-medium whitespace-pre-line md:text-7xl">
             {m.home_hero_title()}
@@ -155,7 +155,7 @@ function Home() {
       </section>
 
       <div className="mt-100 rounded-tl-4xl bg-white">
-        <section className="px-10 py-16 lg:px-20">
+        <section className="page-gutter py-16 hidden md:block">
           <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-3">
             <ServiceList
               category={m.home_overview_strategy_title()}
@@ -201,17 +201,19 @@ function Home() {
 
         <section
           id="works"
-          className="scroll-mt-32 border-t border-gray-200 p-10 md:scroll-mt-28 lg:p-20"
+          className="scroll-mt-32 md:border-t border-gray-200 py-10 md:scroll-mt-28 lg:py-20"
         >
-          <h2 className="text-3xl font-bold">{m.common_page_works()}</h2>
+          <h2 className="page-gutter text-2xl md:text-3xl font-bold">
+            {m.common_page_works()}
+          </h2>
           <WorksCarousel works={works} />
         </section>
 
         <section
           id="services"
-          className="scroll-mt-32 border-t border-gray-200 p-10 md:scroll-mt-28 lg:p-20"
+          className="page-gutter scroll-mt-32 border-t border-gray-200 py-10 md:scroll-mt-28 lg:py-20"
         >
-          <h2 className="mb-10 text-3xl font-bold">
+          <h2 className="mb-10 text-2xl md:text-3xl font-bold">
             {m.home_services_heading()}
           </h2>
           <div className="flex flex-col gap-10">
@@ -237,8 +239,8 @@ function Home() {
           </div>
         </section>
 
-        <section className="border-t border-gray-200 bg-gray-50 p-10 lg:p-20">
-          <h2 className="mb-10 text-3xl font-bold">
+        <section className="page-gutter border-t border-gray-200 bg-gray-50 py-10 lg:py-20">
+          <h2 className="mb-10 text-2xl md:text-3xl font-bold">
             {m.home_capabilities_heading()}
           </h2>
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
@@ -281,7 +283,7 @@ function Home() {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 items-center gap-20 p-10 md:grid-cols-2 lg:p-20">
+        <section className="page-gutter grid grid-cols-1 items-center gap-20 py-10 md:grid-cols-2 lg:py-20">
           <div className="overflow-hidden rounded-xl lg:rounded-none lg:rounded-tr-4xl">
             <Picture
               picture={picHomeAboutUs}
@@ -291,15 +293,19 @@ function Home() {
             />
           </div>
           <div>
-            <h2 className="mb-10 text-3xl font-bold">{m.home_about_title()}</h2>
+            <h2 className="mb-10 text-2xl md:text-3xl font-bold">
+              {m.home_about_title()}
+            </h2>
             <p className="leading-8 whitespace-pre-line">
               {m.home_about_description()}
             </p>
           </div>
         </section>
 
-        <section className="bg-gray-50 p-10 lg:p-20">
-          <h2 className="text-3xl font-bold">{m.common_page_news()}</h2>
+        <section className="page-gutter bg-gray-50 py-10 lg:py-20">
+          <h2 className="text-2xl md:text-3xl font-bold">
+            {m.common_page_news()}
+          </h2>
           {news.length > 0 ? (
             <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {news.map((article) => (

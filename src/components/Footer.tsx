@@ -7,7 +7,7 @@ import { m } from "../paraglide/messages";
 export default function Footer() {
   return (
     <footer>
-      <section className="flex flex-col gap-8 bg-cyan-400 p-10 text-white lg:p-20">
+      <section className="page-gutter flex flex-col gap-8 bg-cyan-400 py-10 text-white lg:py-20">
         <div className="inline-flex w-fit rounded-full border border-white p-4">
           <MdMail size={24} aria-hidden="true" />
         </div>
@@ -24,7 +24,7 @@ export default function Footer() {
           </Link>
         </div>
       </section>
-      <div className="bg-black p-10 text-white lg:p-20">
+      <div className="page-gutter bg-black py-10 text-white lg:py-20">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <img
             src={imgLogo}

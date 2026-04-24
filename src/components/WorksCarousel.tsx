@@ -16,7 +16,7 @@ function CarouselWorkCard({ work }: { work: Work }) {
     <Link
       to="/works/$slug"
       params={{ slug: work.slug }}
-      className="group flex flex-col overflow-hidden rounded-4xl border border-gray-200 bg-white transition hover:-translate-y-1 hover:shadow-[0_24px_64px_rgba(0,0,0,0.1)]"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition hover:-translate-y-1 hover:shadow-[0_24px_64px_rgba(0,0,0,0.1)]"
     >
       <div className="aspect-16/10 overflow-hidden bg-gray-100">
         <Picture
@@ -27,12 +27,12 @@ function CarouselWorkCard({ work }: { work: Work }) {
         />
       </div>
       <div className="flex flex-1 flex-col gap-4 p-6 md:p-8 lg:p-10">
-        <p className="flex items-center gap-2 text-sm font-semibold tracking-[0.14em] text-gray-500 uppercase">
+        <p className="flex items-center gap-2 text-xs tracking-[0.14em] text-gray-500 uppercase">
           <MdBusiness />
           {work.organization}
         </p>
-        <h3 className="text-2xl font-semibold md:text-lg">{work.title}</h3>
-        <p className="text-xs leading-7 text-gray-600 line-clamp-2">
+        <h3 className="text-lg font-medium md:text-xl">{work.title}</h3>
+        <p className="text-sm leading-7 text-gray-600 line-clamp-2 hidden md:block">
           {work.excerpt}
         </p>
       </div>

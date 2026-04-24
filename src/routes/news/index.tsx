@@ -22,7 +22,7 @@ function RouteComponent() {
       />
 
       {news.length > 0 ? (
-        <section className="border-t border-gray-200 px-6 py-12 md:px-20 md:py-16">
+        <section className="page-gutter border-t border-gray-200 py-12 md:py-16">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {news.map((article) => (
               <NewsCard

@@ -18,7 +18,7 @@ function RouteComponent() {
           <p className="whitespace-pre-line">{m.service_uiux_description()}</p>
         }
       />
-      <div className="flex flex-col gap-10 p-10 lg:p-20 lg:px-32">
+      <div className="page-gutter-wide flex flex-col gap-10 py-10 lg:py-20">
         <Picture
           picture={picServiceUidesign}
           alt={m.home_capability_uiux_title()}

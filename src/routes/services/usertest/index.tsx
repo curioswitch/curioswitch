@@ -20,7 +20,7 @@ function RouteComponent() {
           </p>
         }
       />
-      <div className="flex flex-col gap-10 p-10 lg:p-20 lg:px-32">
+      <div className="page-gutter-wide flex flex-col gap-10 py-10 lg:py-20">
         <Picture
           picture={picServiceUsertest}
           alt={m.home_capability_user_testing_title()}

@@ -5,10 +5,29 @@
 
 @theme {
   --font-sans:
-    "Inter Variable", Inter, "ヒラギノ角ゴ W5 JIS2004", "Hiragino Sans",
-    system-ui, sans-serif;
+    "Inter Variable", Inter, "ヒラギノ角ゴ W5 JIS2004", "Hiragino Sans W5",
+    "Hiragino Sans", system-ui, sans-serif;
   --font-paragraph:
-    "Lato", "ヒラギノ角ゴ W3 JIS2004", "Hiragino Sans", system-ui, sans-serif;
+    "Lato", "ヒラギノ角ゴ W3 JIS2004", "Hiragino Sans W3", "Hiragino Sans",
+    system-ui, sans-serif;
+}
+
+:root {
+  --page-gutter: 1.5rem;
+  --page-gutter-wide: 1.5rem;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --page-gutter: 5rem;
+    --page-gutter-wide: 5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --page-gutter-wide: 8rem;
+  }
 }
 
 body {
@@ -17,4 +36,12 @@ body {
 
 p {
   font-family: var(--font-paragraph);
+}
+
+.page-gutter {
+  padding-inline: var(--page-gutter);
+}
+
+.page-gutter-wide {
+  padding-inline: var(--page-gutter-wide);
 }

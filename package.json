@@ -32,7 +32,7 @@
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.2",
+    "@biomejs/biome": "2.4.13",
     "@content-collections/core": "^0.13.1",
     "@content-collections/markdown": "^0.1.4",
     "@content-collections/mdx": "^0.1.6",

@@ -26,8 +26,7 @@ focus on implementation right away.
 - Monorepo-based project management that scales with your team
 - Freely available and reusable under the MIT License
 
-> GitHub: https://github.com/curioswitch/go-curiostack
-> GitHub: https://github.com/anuraaga
+GitHub: https://github.com/curioswitch
 
 # What We Put Into Our OSS
 

@@ -9,3 +9,4 @@ dist
 .tanstack
 .firebase
 routeTree.gen.ts
+.DS_Store

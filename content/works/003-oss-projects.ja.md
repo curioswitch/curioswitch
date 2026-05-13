@@ -21,7 +21,7 @@ CurioStack は、Web アプリケーションを素早く構築するための �
 - モノリポ構成でスケールしやすいプロジェクト管理
 - MIT License で自由に利用・再利用可能
 
-GitHub: https://github.com/curioswitch
+GitHub: [https://github.com/curioswitch](https://github.com/curioswitch)
 
 # 私たちの OSS に込めた思い
 

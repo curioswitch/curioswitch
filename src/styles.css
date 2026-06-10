@@ -19,14 +19,14 @@
 
 @media (min-width: 48rem) {
   :root {
-    --page-gutter: 5rem;
-    --page-gutter-wide: 5rem;
+    --page-gutter: 10rem;
+    --page-gutter-wide: 10rem;
   }
 }
 
 @media (min-width: 64rem) {
   :root {
-    --page-gutter-wide: 8rem;
+    --page-gutter-wide: 10rem;
   }
 }
 
@@ -44,4 +44,8 @@ p {
 
 .page-gutter-wide {
   padding-inline: var(--page-gutter-wide);
+}
+
+.font-hiragino-w5 {
+  font-family: "ヒラギノ角ゴ W5 JIS2004", "Hiragino Sans W5", "Hiragino Kaku Gothic ProN", "Hiragino Sans", system-ui, sans-serif;
 }

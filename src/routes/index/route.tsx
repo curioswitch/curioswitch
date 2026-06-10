@@ -138,9 +138,9 @@ function Home() {
 
   return (
     <main className="min-h-screen bg-orange-400">
-      <section className="page-gutter relative flex flex-col justify-end rounded-bl-4xl bg-white pb-10 md:min-h-140 md:pb-20">
+      <section className="page-gutter relative flex flex-col justify-end md:justify-center rounded-bl-4xl bg-white pb-10 md:min-h-96 md:py-20">
         <div className="flex max-w-4xl flex-col gap-6 md:gap-8">
-          <h1 className="text-5xl font-medium whitespace-pre-line md:text-7xl">
+          <h1 className="text-5xl font-medium whitespace-pre-line md:text-7xl font-hiragino-w5 tracking-[-0.06em]">
             {m.home_hero_title()}
           </h1>
           <p className="text-gray-500">{m.common_brand_tagline()}</p>

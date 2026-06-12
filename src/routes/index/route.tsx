@@ -139,7 +139,7 @@ function Home() {
 
   return (
     <main
-      className="min-h-screen bg-top bg-no-repeat bg-[length:auto_20%]"
+      className="min-h-screen bg-top bg-no-repeat bg-fixed bg-[length:100%_auto]"
       style={{ backgroundImage: `url(${heroBackground})` }}
     >
       <section className="page-gutter relative flex flex-col justify-end md:justify-center rounded-bl-[4rem] bg-white pb-10 md:min-h-96 md:py-20">

@@ -26,14 +26,14 @@ function CarouselWorkCard({ work }: { work: Work }) {
           sizePreset="carousel"
         />
       </div>
-      <div className="flex flex-1 flex-col gap-4 p-6 md:p-8 lg:p-10">
-        <p className="flex items-center gap-2 text-xs tracking-[0.14em] text-gray-500 uppercase">
+      <div className="flex flex-1 flex-col gap-6 p-6 md:p-8 lg:p-10 items-center">
+        <p className="flex items-center gap-2 text-xs tracking-[0.14em] text-gray-500 uppercase w-[90%]">
           <MdBusiness />
           {work.organization}
         </p>
-        <h3 className="text-lg font-medium md:text-xl">{work.title}</h3>
-        <p className="text-sm leading-7 text-gray-600 line-clamp-2 hidden md:block">
-          {work.excerpt}
+        <h3 className="text-lg font-medium md:text-xl w-[90%]">{work.title}</h3>
+        <p className="text-sm leading-relaxed text-gray-600 line-clamp-1 hidden md:block w-[90%]">
+          {work.excerpt.length > 50 ? `${work.excerpt.slice(0, 50)}...` : work.excerpt}
         </p>
       </div>
     </Link>
@@ -57,7 +57,7 @@ export default function WorksCarousel({ works }: { works: Work[] }) {
           {works.map((work) => (
             <div
               key={`${work.locale}:${work.slug}`}
-              className="min-w-0 flex-[0_0_88%] pl-5 md:flex-[0_0_72%] md:pl-6 lg:flex-[0_0_60%]"
+              className="min-w-0 flex-[0_0_88%] pl-5 md:flex-[0_0_72%] md:pl-6 lg:flex-[0_0_45%]"
             >
               <CarouselWorkCard work={work} />
             </div>

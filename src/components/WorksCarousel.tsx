@@ -66,7 +66,7 @@ export default function WorksCarousel({ works }: { works: Work[] }) {
       </div>
 
       {works.length > 1 ? (
-        <div className="flex justify-end">
+        <div className="flex justify-start page-gutter">
           <div className="inline-flex">
             <button
               type="button"
@@ -74,7 +74,7 @@ export default function WorksCarousel({ works }: { works: Work[] }) {
               className="cursor-pointer flex h-14 w-14 items-center justify-center rounded-tl-4xl rounded-bl-4xl bg-black text-2xl leading-none text-white transition hover:bg-gray-900"
               onClick={() => emblaApi?.goToPrev()}
             >
-              <MdKeyboardArrowLeft size={48} />
+              <MdKeyboardArrowLeft size={32} />
             </button>
             <button
               type="button"
@@ -82,7 +82,7 @@ export default function WorksCarousel({ works }: { works: Work[] }) {
               className="cursor-pointer flex h-14 w-14 items-center justify-center rounded-tr-4xl rounded-br-4xl border-l border-white/10 bg-black text-2xl leading-none text-white transition hover:bg-gray-900"
               onClick={() => emblaApi?.goToNext()}
             >
-              <MdKeyboardArrowRight size={48} />
+              <MdKeyboardArrowRight size={32} />
             </button>
           </div>
         </div>

@@ -100,7 +100,7 @@ function ServiceFeature({
         }
       >
         <h3 className="text-2xl font-semibold">{title}</h3>
-        <p className="text-gray-600 text-sm leading-6 whitespace-pre-line">
+        <p className="text-gray-600 text-sm leading-7 whitespace-pre-line">
           {description}
         </p>
       </div>

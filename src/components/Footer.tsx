@@ -29,7 +29,7 @@ export default function Footer() {
           <img
             src={imgLogo}
             alt={m.common_logo_alt()}
-            className="h-6 w-auto md:h-12"
+            className="h-8 w-auto max-w-[200px] object-contain md:h-12 md:max-w-none"
           />
           <small className="text-sm not-italic">{m.footer_copyright()}</small>
         </div>

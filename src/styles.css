@@ -45,9 +45,3 @@ p {
 .page-gutter-wide {
   padding-inline: var(--page-gutter-wide);
 }
-
-.font-hiragino-w5 {
-  font-family:
-    "ヒラギノ角ゴ W5 JIS2004", "Hiragino Sans W5", "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans", system-ui, sans-serif;
-}

@@ -139,12 +139,12 @@ function Home() {
 
   return (
     <main
-      className="min-h-screen bg-top bg-no-repeat bg-fixed bg-[length:100%_auto]"
+      className="min-h-screen bg-top bg-no-repeat bg-fixed bg-size-[100%_auto]"
       style={{ backgroundImage: `url(${heroBackground})` }}
     >
       <section className="page-gutter relative flex flex-col justify-end md:justify-center rounded-bl-[4rem] bg-white pb-10 md:min-h-96 md:py-20">
         <div className="flex max-w-4xl flex-col gap-6 md:gap-8">
-          <h1 className="text-5xl font-medium whitespace-pre-line md:text-7xl font-hiragino-w5 tracking-[-0.06em]">
+          <h1 className="text-5xl font-medium whitespace-pre-line md:text-7xl font-sans tracking-[-0.06em]">
             {m.home_hero_title()}
           </h1>
           <p className="text-gray-500">{m.common_brand_tagline()}</p>

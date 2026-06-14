@@ -19,14 +19,14 @@
 
 @media (min-width: 48rem) {
   :root {
-    --page-gutter: 5rem;
-    --page-gutter-wide: 5rem;
+    --page-gutter: 10rem;
+    --page-gutter-wide: 10rem;
   }
 }
 
 @media (min-width: 64rem) {
   :root {
-    --page-gutter-wide: 8rem;
+    --page-gutter-wide: 10rem;
   }
 }
 

@@ -9,6 +9,7 @@ import {
   MdWeb,
 } from "react-icons/md";
 
+import heroBackground from "../../assets/hero-background.jpeg";
 import picHomeAboutUs from "../../assets/home-about-us.jpg?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import picServiceCreativeLab from "../../assets/home-service-creativelab.webp?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import picServiceDesign from "../../assets/home-service-design.webp?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
@@ -88,7 +89,7 @@ function ServiceFeature({
       <div className={reversed ? "md:order-2" : undefined}>
         <Picture
           picture={picture}
-          className="h-full w-full"
+          className="h-full w-full rounded-xl overflow-hidden"
           alt={alt}
           sizePreset="twoColumn"
         />
@@ -99,7 +100,7 @@ function ServiceFeature({
         }
       >
         <h3 className="text-2xl font-semibold">{title}</h3>
-        <p className="text-gray-600 text-sm leading-6 whitespace-pre-line">
+        <p className="text-gray-600 text-sm leading-7 whitespace-pre-line">
           {description}
         </p>
       </div>
@@ -137,10 +138,13 @@ function Home() {
   const { works, news } = Route.useLoaderData();
 
   return (
-    <main className="min-h-screen bg-orange-400">
-      <section className="page-gutter relative flex flex-col justify-end rounded-bl-4xl bg-white pb-10 md:min-h-140 md:pb-20">
+    <main
+      className="min-h-screen bg-top bg-no-repeat bg-fixed bg-size-[100%_auto]"
+      style={{ backgroundImage: `url(${heroBackground})` }}
+    >
+      <section className="page-gutter relative flex flex-col justify-end md:justify-center rounded-bl-[4rem] bg-white pb-10 md:min-h-96 md:py-20">
         <div className="flex max-w-4xl flex-col gap-6 md:gap-8">
-          <h1 className="text-5xl font-medium whitespace-pre-line md:text-7xl">
+          <h1 className="text-5xl font-medium whitespace-pre-line md:text-7xl font-sans tracking-[-0.06em]">
             {m.home_hero_title()}
           </h1>
           <p className="text-gray-500">{m.common_brand_tagline()}</p>
@@ -154,7 +158,7 @@ function Home() {
         </a>
       </section>
 
-      <div className="mt-100 rounded-tl-4xl bg-white">
+      <div className="mt-100 rounded-tl-[4rem] bg-white">
         <section className="page-gutter py-16 hidden md:block">
           <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-3">
             <ServiceList
@@ -203,9 +207,12 @@ function Home() {
           id="works"
           className="scroll-mt-32 md:border-t border-gray-200 py-10 md:scroll-mt-28 lg:py-20"
         >
-          <h2 className="page-gutter text-2xl md:text-3xl font-bold">
-            {m.common_page_works()}
-          </h2>
+          <div className="page-gutter">
+            <h2 className="text-2xl md:text-3xl font-bold">
+              {m.common_page_works()}
+            </h2>
+            <p className="text-gray-500 mt-2">Works</p>
+          </div>
           <WorksCarousel works={works} />
         </section>
 

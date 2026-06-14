@@ -14,7 +14,9 @@ const HTML_ATTRIBUTE_PATTERN =
   /([^\s=/>]+)(?:=(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
 
 function mergeBlockClassName(className?: string) {
-  return className ? `block ${className}` : "block";
+  return className
+    ? `block max-w-3xl mx-auto ${className}`
+    : "block max-w-3xl mx-auto";
 }
 
 function renderPictureSources(picture: ImageToolsPicture) {

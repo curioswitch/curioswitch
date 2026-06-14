@@ -33,7 +33,9 @@ function CarouselWorkCard({ work }: { work: Work }) {
         </p>
         <h3 className="text-lg font-medium md:text-xl w-[90%]">{work.title}</h3>
         <p className="text-sm leading-relaxed text-gray-600 line-clamp-1 hidden md:block w-[90%]">
-          {work.excerpt.length > 50 ? `${work.excerpt.slice(0, 50)}...` : work.excerpt}
+          {work.excerpt.length > 50
+            ? `${work.excerpt.slice(0, 50)}...`
+            : work.excerpt}
         </p>
       </div>
     </Link>

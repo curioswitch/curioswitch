@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { MdBusiness } from "react-icons/md";
 
 import picWorksHero from "../../assets/works-hero.jpg?w=640;960;1440;2160&format=avif;webp;jpg&as=picture";
+import { FadeIn } from "../../components/FadeIn";
 import { PageIntro } from "../../components/PageLayout";
 import { Picture } from "../../components/Picture";
 import { getLocalizedWorks, type WorkEntry } from "../../lib/content";
@@ -62,8 +63,10 @@ function RouteComponent() {
       {works.length > 0 ? (
         <section className="page-gutter border-t border-gray-200 py-12 md:py-16">
           <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {works.map((work) => (
-              <WorkCard key={`${work.locale}:${work.slug}`} work={work} />
+            {works.map((work, i) => (
+              <FadeIn key={`${work.locale}:${work.slug}`} delay={i * 80}>
+                <WorkCard work={work} />
+              </FadeIn>
             ))}
           </div>
         </section>

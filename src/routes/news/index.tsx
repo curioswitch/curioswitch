@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { FadeIn } from "../../components/FadeIn";
 import { NewsCard } from "../../components/NewsCard";
 import { PageIntro } from "../../components/PageLayout";
 import { getLocalizedNews } from "../../lib/content";
@@ -24,11 +25,10 @@ function RouteComponent() {
       {news.length > 0 ? (
         <section className="page-gutter border-t border-gray-200 py-12 md:py-16">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {news.map((article) => (
-              <NewsCard
-                key={`${article.locale}:${article.slug}`}
-                article={article}
-              />
+            {news.map((article, i) => (
+              <FadeIn key={`${article.locale}:${article.slug}`} delay={i * 80}>
+                <NewsCard article={article} />
+              </FadeIn>
             ))}
           </div>
         </section>

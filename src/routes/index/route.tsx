@@ -20,6 +20,7 @@ import picServicePlanning from "../../assets/service-planning.webp?w=320;480;640
 import picServicePrototyping from "../../assets/service-prototyping.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServiceUidesign from "../../assets/service-uidesign.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServiceUserTest from "../../assets/service-usertest.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
+import { FadeIn } from "../../components/FadeIn";
 import { NewsCard } from "../../components/NewsCard";
 import { Picture } from "../../components/Picture";
 import WorksCarousel from "../../components/WorksCarousel";
@@ -144,62 +145,75 @@ function Home() {
     >
       <section className="page-gutter relative flex flex-col justify-end md:justify-center rounded-bl-[4rem] bg-white pb-10 md:min-h-96 md:py-20">
         <div className="flex max-w-4xl flex-col gap-6 md:gap-8">
-          <h1 className="text-5xl font-medium whitespace-pre-line md:text-7xl font-sans tracking-[-0.06em]">
-            {m.home_hero_title()}
-          </h1>
-          <p className="text-gray-500">{m.common_brand_tagline()}</p>
+          <FadeIn>
+            <h1 className="text-5xl font-medium whitespace-pre-line md:text-7xl font-sans tracking-[-0.06em]">
+              {m.home_hero_title()}
+            </h1>
+          </FadeIn>
+          <FadeIn delay={150}>
+            <p className="text-gray-500">{m.common_brand_tagline()}</p>
+          </FadeIn>
         </div>
         <a
           href="#works"
           aria-label={m.home_scroll_to_works_label()}
-          className="absolute right-8 bottom-0 flex h-20 w-20 translate-y-1/2 items-center justify-center rounded-full bg-black text-white shadow-[0_12px_32px_rgba(0,0,0,0.28)] md:right-20 md:h-32 md:w-32"
+          className="absolute right-8 bottom-0 flex h-20 w-20 translate-y-1/2 items-center justify-center rounded-full bg-black text-white shadow-[0_12px_32px_rgba(0,0,0,0.28)] transition-transform duration-300 hover:scale-110 md:right-20 md:h-32 md:w-32"
         >
-          <MdSouth size={32} />
+          <MdSouth
+            size={32}
+            style={{ animation: "arrow-float 1.8s ease-in-out infinite" }}
+          />
         </a>
       </section>
 
       <div className="mt-100 rounded-tl-[4rem] bg-white">
         <section className="page-gutter py-16 hidden md:block">
           <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-3">
-            <ServiceList
-              category={m.home_overview_strategy_title()}
-              Icon={MdWeb}
-            >
-              <ServiceListItem
-                service={m.home_overview_strategy_service_1()}
-                href="/services/planning"
-              />
-            </ServiceList>
-            <ServiceList
-              category={m.home_overview_uiux_title()}
-              Icon={MdSearch}
-            >
-              <ServiceListItem
-                service={m.home_overview_uiux_service_1()}
-                href="/services/usertest"
-              />
-              <ServiceListItem
-                service={m.home_overview_uiux_service_2()}
-                href="/services/prototyping"
-              />
-              <ServiceListItem
-                service={m.home_overview_uiux_service_3()}
-                href="/services/uiux"
-              />
-            </ServiceList>
-            <ServiceList
-              category={m.home_overview_engineering_title()}
-              Icon={MdAccessibility}
-            >
-              <ServiceListItem
-                service={m.home_overview_engineering_service_1()}
-                href="/services/engineering"
-              />
-              <ServiceListItem
-                service={m.home_overview_engineering_service_2()}
-                href="/services/oss"
-              />
-            </ServiceList>
+            <FadeIn delay={0}>
+              <ServiceList
+                category={m.home_overview_strategy_title()}
+                Icon={MdWeb}
+              >
+                <ServiceListItem
+                  service={m.home_overview_strategy_service_1()}
+                  href="/services/planning"
+                />
+              </ServiceList>
+            </FadeIn>
+            <FadeIn delay={100}>
+              <ServiceList
+                category={m.home_overview_uiux_title()}
+                Icon={MdSearch}
+              >
+                <ServiceListItem
+                  service={m.home_overview_uiux_service_1()}
+                  href="/services/usertest"
+                />
+                <ServiceListItem
+                  service={m.home_overview_uiux_service_2()}
+                  href="/services/prototyping"
+                />
+                <ServiceListItem
+                  service={m.home_overview_uiux_service_3()}
+                  href="/services/uiux"
+                />
+              </ServiceList>
+            </FadeIn>
+            <FadeIn delay={200}>
+              <ServiceList
+                category={m.home_overview_engineering_title()}
+                Icon={MdAccessibility}
+              >
+                <ServiceListItem
+                  service={m.home_overview_engineering_service_1()}
+                  href="/services/engineering"
+                />
+                <ServiceListItem
+                  service={m.home_overview_engineering_service_2()}
+                  href="/services/oss"
+                />
+              </ServiceList>
+            </FadeIn>
           </div>
         </section>
 
@@ -208,10 +222,12 @@ function Home() {
           className="scroll-mt-32 md:border-t border-gray-200 py-10 md:scroll-mt-28 lg:py-20"
         >
           <div className="page-gutter">
-            <h2 className="text-2xl md:text-3xl font-bold">
-              {m.common_page_works()}
-            </h2>
-            <p className="text-gray-500 mt-2">Works</p>
+            <FadeIn>
+              <h2 className="text-2xl md:text-3xl font-bold">
+                {m.common_page_works()}
+              </h2>
+              <p className="text-gray-500 mt-2">Works</p>
+            </FadeIn>
           </div>
           <WorksCarousel works={works} />
         </section>
@@ -220,106 +236,129 @@ function Home() {
           id="services"
           className="page-gutter scroll-mt-32 border-t border-gray-200 py-10 md:scroll-mt-28 lg:py-20"
         >
-          <h2 className="mb-10 text-2xl md:text-3xl font-bold">
-            {m.home_services_heading()}
-          </h2>
+          <FadeIn>
+            <h2 className="mb-10 text-2xl md:text-3xl font-bold">
+              {m.home_services_heading()}
+            </h2>
+          </FadeIn>
           <div className="flex flex-col gap-10">
-            <ServiceFeature
-              alt={m.home_feature_studio_alt()}
-              picture={picServiceStudio}
-              title={m.home_feature_studio_title()}
-              description={m.home_feature_studio_description()}
-            />
-            <ServiceFeature
-              alt={m.home_feature_creative_lab_alt()}
-              picture={picServiceCreativeLab}
-              reversed
-              title={m.home_feature_creative_lab_title()}
-              description={m.home_feature_creative_lab_description()}
-            />
-            <ServiceFeature
-              alt={m.home_feature_design_exhibition_alt()}
-              picture={picServiceDesign}
-              title={m.home_feature_design_exhibition_title()}
-              description={m.home_feature_design_exhibition_description()}
-            />
+            <FadeIn direction="left">
+              <ServiceFeature
+                alt={m.home_feature_studio_alt()}
+                picture={picServiceStudio}
+                title={m.home_feature_studio_title()}
+                description={m.home_feature_studio_description()}
+              />
+            </FadeIn>
+            <FadeIn direction="right">
+              <ServiceFeature
+                alt={m.home_feature_creative_lab_alt()}
+                picture={picServiceCreativeLab}
+                reversed
+                title={m.home_feature_creative_lab_title()}
+                description={m.home_feature_creative_lab_description()}
+              />
+            </FadeIn>
+            <FadeIn direction="left">
+              <ServiceFeature
+                alt={m.home_feature_design_exhibition_alt()}
+                picture={picServiceDesign}
+                title={m.home_feature_design_exhibition_title()}
+                description={m.home_feature_design_exhibition_description()}
+              />
+            </FadeIn>
           </div>
         </section>
 
         <section className="page-gutter border-t border-gray-200 bg-gray-50 py-10 lg:py-20">
-          <h2 className="mb-10 text-2xl md:text-3xl font-bold">
-            {m.home_capabilities_heading()}
-          </h2>
+          <FadeIn>
+            <h2 className="mb-10 text-2xl md:text-3xl font-bold">
+              {m.home_capabilities_heading()}
+            </h2>
+          </FadeIn>
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-            <CapabilityCard
-              alt={m.home_capability_planning_title()}
-              picture={picServicePlanning}
-              title={m.home_capability_planning_title()}
-              href="/services/planning"
-            />
-            <CapabilityCard
-              alt={m.home_capability_prototyping_title()}
-              picture={picServicePrototyping}
-              title={m.home_capability_prototyping_title()}
-              href="/services/prototyping"
-            />
-            <CapabilityCard
-              alt={m.home_capability_engineering_title()}
-              picture={picServiceEngineering}
-              title={m.home_capability_engineering_title()}
-              href="/services/engineering"
-            />
-            <CapabilityCard
-              alt={m.home_capability_uiux_title()}
-              picture={picServiceUidesign}
-              title={m.home_capability_uiux_title()}
-              href="/services/uiux"
-            />
-            <CapabilityCard
-              alt={m.home_capability_user_testing_title()}
-              picture={picServiceUserTest}
-              title={m.home_capability_user_testing_title()}
-              href="/services/usertest"
-            />
-            <CapabilityCard
-              alt={m.home_capability_open_source_title()}
-              picture={picServiceOss}
-              title={m.home_capability_open_source_title()}
-              href="/services/oss"
-            />
+            {[
+              {
+                alt: m.home_capability_planning_title(),
+                picture: picServicePlanning,
+                title: m.home_capability_planning_title(),
+                href: "/services/planning",
+              },
+              {
+                alt: m.home_capability_prototyping_title(),
+                picture: picServicePrototyping,
+                title: m.home_capability_prototyping_title(),
+                href: "/services/prototyping",
+              },
+              {
+                alt: m.home_capability_engineering_title(),
+                picture: picServiceEngineering,
+                title: m.home_capability_engineering_title(),
+                href: "/services/engineering",
+              },
+              {
+                alt: m.home_capability_uiux_title(),
+                picture: picServiceUidesign,
+                title: m.home_capability_uiux_title(),
+                href: "/services/uiux",
+              },
+              {
+                alt: m.home_capability_user_testing_title(),
+                picture: picServiceUserTest,
+                title: m.home_capability_user_testing_title(),
+                href: "/services/usertest",
+              },
+              {
+                alt: m.home_capability_open_source_title(),
+                picture: picServiceOss,
+                title: m.home_capability_open_source_title(),
+                href: "/services/oss",
+              },
+            ].map((card, i) => (
+              <FadeIn key={card.href} delay={i * 80}>
+                <CapabilityCard {...card} />
+              </FadeIn>
+            ))}
           </div>
         </section>
 
         <section className="page-gutter grid grid-cols-1 items-center gap-20 py-10 md:grid-cols-2 lg:py-20">
-          <div className="overflow-hidden rounded-xl lg:rounded-none lg:rounded-tr-4xl">
+          <FadeIn
+            direction="left"
+            className="overflow-hidden rounded-xl lg:rounded-none lg:rounded-tr-4xl"
+          >
             <Picture
               picture={picHomeAboutUs}
               className="block w-full"
               alt={m.home_about_image_alt()}
               sizePreset="twoColumn"
             />
-          </div>
-          <div>
+          </FadeIn>
+          <FadeIn direction="right">
             <h2 className="mb-10 text-2xl md:text-3xl font-bold">
               {m.home_about_title()}
             </h2>
             <p className="leading-8 whitespace-pre-line">
               {m.home_about_description()}
             </p>
-          </div>
+          </FadeIn>
         </section>
 
         <section className="page-gutter bg-gray-50 py-10 lg:py-20">
-          <h2 className="text-2xl md:text-3xl font-bold">
-            {m.common_page_news()}
-          </h2>
+          <FadeIn>
+            <h2 className="text-2xl md:text-3xl font-bold">
+              {m.common_page_news()}
+            </h2>
+          </FadeIn>
           {news.length > 0 ? (
             <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {news.map((article) => (
-                <NewsCard
+              {news.map((article, i) => (
+                <FadeIn
                   key={`${article.locale}:${article.slug}`}
-                  article={article}
-                />
+                  delay={i * 100}
+                >
+                  <NewsCard article={article} />
+                </FadeIn>
               ))}
             </div>
           ) : null}

@@ -20,7 +20,7 @@ export function NewsCard({ article }: { article: News }) {
     <Link
       to="/news/$slug"
       params={{ slug: article.slug }}
-      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white transition hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)]"
+      className="group flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)]"
     >
       <div className="aspect-16/10 overflow-hidden bg-gray-100">
         <Picture

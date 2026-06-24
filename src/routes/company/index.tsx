@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import picCompanyHero from "../../assets/company-hero.jpg?w=640;960;1440;2160&format=avif;webp;jpg&as=picture";
 import picCompanyMessage from "../../assets/company-message.jpg?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
+import { FadeIn } from "../../components/FadeIn";
 import { PageIntro } from "../../components/PageLayout";
 import { Picture } from "../../components/Picture";
 import { m } from "../../paraglide/messages";
@@ -29,96 +30,118 @@ function RouteComponent() {
         sizePreset="fullWidth"
       />
       <section className="page-gutter-wide grid gap-4 py-10 md:gap-8 lg:grid-cols-[1fr_9fr_6fr] lg:py-24">
-        <p className="text-sm font-medium tracking-[0.18em] text-gray-500 uppercase whitespace-nowrap">
-          {m.company_mission_label()}
-        </p>
-        <div className="flex flex-col gap-6 md:gap-12">
-          <h2 className="text-3xl lg:text-6xl font-medium whitespace-pre-line">
-            {m.company_mission_title()}
-          </h2>
-          <p className="text-sm lg:text-base">{m.company_mission_summary()}</p>
-        </div>
-        <p className="text-sm leading-7 text-gray-600 whitespace-pre-line">
-          {m.company_mission_body()}
-        </p>
-        <p className="text-sm font-medium tracking-[0.18em] text-gray-500 uppercase whitespace-nowrap">
-          {m.company_vision_label()}
-        </p>
-        <div className="flex flex-col gap-12">
-          <h2 className="text-3xl lg:text-6xl font-medium whitespace-pre-line">
-            {m.company_vision_title()}
-          </h2>
-          <p className="text-sm lg:text-base">{m.company_vision_summary()}</p>
-        </div>
-        <p className="text-sm leading-7 text-gray-600 whitespace-pre-line">
-          {m.company_vision_body()}
-        </p>
+        <FadeIn>
+          <p className="text-sm font-medium tracking-[0.18em] text-gray-500 uppercase whitespace-nowrap">
+            {m.company_mission_label()}
+          </p>
+        </FadeIn>
+        <FadeIn delay={100}>
+          <div className="flex flex-col gap-6 md:gap-12">
+            <h2 className="text-3xl lg:text-6xl font-medium whitespace-pre-line">
+              {m.company_mission_title()}
+            </h2>
+            <p className="text-sm lg:text-base">
+              {m.company_mission_summary()}
+            </p>
+          </div>
+        </FadeIn>
+        <FadeIn delay={200}>
+          <p className="text-sm leading-7 text-gray-600 whitespace-pre-line">
+            {m.company_mission_body()}
+          </p>
+        </FadeIn>
+        <FadeIn>
+          <p className="text-sm font-medium tracking-[0.18em] text-gray-500 uppercase whitespace-nowrap">
+            {m.company_vision_label()}
+          </p>
+        </FadeIn>
+        <FadeIn delay={100}>
+          <div className="flex flex-col gap-12">
+            <h2 className="text-3xl lg:text-6xl font-medium whitespace-pre-line">
+              {m.company_vision_title()}
+            </h2>
+            <p className="text-sm lg:text-base">{m.company_vision_summary()}</p>
+          </div>
+        </FadeIn>
+        <FadeIn delay={200}>
+          <p className="text-sm leading-7 text-gray-600 whitespace-pre-line">
+            {m.company_vision_body()}
+          </p>
+        </FadeIn>
       </section>
       <section className="page-gutter-wide border-t border-gray-100 py-10 lg:py-20">
-        <header>
-          <h2 className="text-4xl">{m.company_message_heading()}</h2>
-        </header>
+        <FadeIn>
+          <header>
+            <h2 className="text-4xl">{m.company_message_heading()}</h2>
+          </header>
+        </FadeIn>
         <div className="mt-12 grid items-end gap-12 lg:grid-cols-2">
-          <div className="order-2 lg:order-1">
+          <FadeIn direction="left" className="order-2 lg:order-1">
             <h3 className="text-2xl whitespace-pre-line">
               {m.company_message_title()}
             </h3>
             <p className="mt-8 leading-7 text-gray-800 whitespace-pre-line lg:leading-10">
               {m.company_message_body()}
             </p>
-          </div>
-          <div className="order-1 lg:order-2">
+          </FadeIn>
+          <FadeIn direction="right" className="order-1 lg:order-2">
             <Picture
               picture={picCompanyMessage}
               alt={m.company_message_image_alt()}
               className="h-48 w-full rounded-xl object-cover md:h-96"
               sizePreset="twoColumn"
             />
-          </div>
+          </FadeIn>
         </div>
       </section>
       <section className="page-gutter-wide border-t border-gray-100 py-10 lg:py-20">
-        <header>
-          <h2 className="text-4xl">{m.company_overview_heading()}</h2>
-        </header>
+        <FadeIn>
+          <header>
+            <h2 className="text-4xl">{m.company_overview_heading()}</h2>
+          </header>
+        </FadeIn>
         <div className="mt-12 grid items-start gap-12 lg:grid-cols-2">
-          <iframe
-            title={m.company_map_title()}
-            src={mapUrl}
-            className="h-96 w-full rounded-xl border-0"
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-          <dl className="grid grid-cols-[8rem_minmax(0,1fr)] items-start gap-x-12 gap-y-4 leading-7">
-            <dt className="font-semibold">
-              {m.company_overview_capital_label()}
-            </dt>
-            <dd className="text-gray-700">
-              {m.company_overview_capital_value()}
-            </dd>
+          <FadeIn direction="left">
+            <iframe
+              title={m.company_map_title()}
+              src={mapUrl}
+              className="h-96 w-full rounded-xl border-0"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </FadeIn>
+          <FadeIn direction="right">
+            <dl className="grid grid-cols-[8rem_minmax(0,1fr)] items-start gap-x-12 gap-y-4 leading-7">
+              <dt className="font-semibold">
+                {m.company_overview_capital_label()}
+              </dt>
+              <dd className="text-gray-700">
+                {m.company_overview_capital_value()}
+              </dd>
 
-            <dt className="font-semibold">
-              {m.company_overview_established_label()}
-            </dt>
-            <dd className="text-gray-700">
-              {m.company_overview_established_value()}
-            </dd>
+              <dt className="font-semibold">
+                {m.company_overview_established_label()}
+              </dt>
+              <dd className="text-gray-700">
+                {m.company_overview_established_value()}
+              </dd>
 
-            <dt className="font-semibold">
-              {m.company_overview_address_label()}
-            </dt>
-            <dd className="text-gray-700">
-              {m.company_overview_address_value()}
-            </dd>
+              <dt className="font-semibold">
+                {m.company_overview_address_label()}
+              </dt>
+              <dd className="text-gray-700">
+                {m.company_overview_address_value()}
+              </dd>
 
-            <dt className="font-semibold">
-              {m.company_overview_business_label()}
-            </dt>
-            <dd className="text-gray-700">
-              {m.company_overview_business_value()}
-            </dd>
-          </dl>
+              <dt className="font-semibold">
+                {m.company_overview_business_label()}
+              </dt>
+              <dd className="text-gray-700">
+                {m.company_overview_business_value()}
+              </dd>
+            </dl>
+          </FadeIn>
         </div>
       </section>
     </main>

@@ -5,6 +5,7 @@ import type { Picture as ImageToolsPicture } from "vite-imagetools";
 import picMembersChoko from "../../assets/members-choko.jpg?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import picMembersHero from "../../assets/members-hero.jpg?w=640;960;1440;2160&format=avif;webp;jpg&as=picture";
 import picMembersKyon from "../../assets/members-kyon.jpg?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
+import { FadeIn } from "../../components/FadeIn";
 import { PageIntro } from "../../components/PageLayout";
 import { Picture } from "../../components/Picture";
 import { m } from "../../paraglide/messages";
@@ -205,8 +206,10 @@ function RouteComponent() {
         priority
         sizePreset="fullWidth"
       />
-      {memberProfiles.map((member) => (
-        <MemberCard key={member.name} {...member} />
+      {memberProfiles.map((member, i) => (
+        <FadeIn key={member.name} delay={i * 150}>
+          <MemberCard {...member} />
+        </FadeIn>
       ))}
     </main>
   );

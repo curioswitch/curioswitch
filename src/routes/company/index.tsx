@@ -40,7 +40,9 @@ function RouteComponent() {
             <h2 className="text-3xl lg:text-6xl font-medium whitespace-pre-line">
               {m.company_mission_title()}
             </h2>
-            <p className="text-sm lg:text-base">{m.company_mission_summary()}</p>
+            <p className="text-sm lg:text-base">
+              {m.company_mission_summary()}
+            </p>
           </div>
         </FadeIn>
         <FadeIn delay={200}>

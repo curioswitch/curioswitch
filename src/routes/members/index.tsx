@@ -55,7 +55,7 @@ function getMemberProfiles(): MemberProfile[] {
       ],
     },
     {
-      name: "Kyon",
+      name: "Skop",
       image: picMembersKyon,
       role: m.members_kyon_role(),
       title: m.members_kyon_title(),
@@ -141,7 +141,7 @@ function MemberCard({
           </header>
           <div className="mt-8 space-y-4 text-gray-800">
             {intro.map((paragraph) => (
-              <p key={paragraph} className="leading-8">
+              <p key={paragraph} className="leading-8 whitespace-pre-line">
                 {paragraph}
               </p>
             ))}

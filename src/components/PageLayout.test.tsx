@@ -36,7 +36,7 @@ describe("ContentEntryPage", () => {
     expect(title?.classList.contains("md:text-6xl")).toBe(false);
   });
 
-  it("uses the compact desktop title size for news entries", () => {
+  it("uses a 40 pixel desktop title size for news entries", () => {
     const { container } = render(
       <ContentEntryPage title="Example" hero={null} variant="news">
         <p>Article</p>
@@ -45,7 +45,8 @@ describe("ContentEntryPage", () => {
 
     const title = container.querySelector("article > header h1");
 
-    expect(title?.classList.contains("md:text-5xl")).toBe(true);
+    expect(title?.classList.contains("md:text-[2.5rem]")).toBe(true);
+    expect(title?.classList.contains("md:text-5xl")).toBe(false);
     expect(title?.classList.contains("md:text-6xl")).toBe(false);
   });
 

@@ -44,17 +44,20 @@ export function ContentEntryPage({
   contentClassName?: string;
   variant?: "default" | "news" | "work";
 }) {
-  const hasCompactTitle = variant === "news" || variant === "work";
   const hasFullBleedHero = variant === "work";
+  const titleSizeClass =
+    variant === "news"
+      ? "md:text-[2.5rem]"
+      : variant === "work"
+        ? "md:text-5xl"
+        : "md:text-6xl";
 
   return (
     <main className="page-gutter bg-white py-12">
       <article className="mx-auto flex max-w-5xl flex-col gap-10">
         <header className="flex flex-col gap-4">
           {titleMeta}
-          <h1
-            className={`text-4xl font-semibold ${hasCompactTitle ? "md:text-5xl" : "md:text-6xl"}`}
-          >
+          <h1 className={`text-4xl font-semibold ${titleSizeClass}`}>
             {title}
           </h1>
         </header>

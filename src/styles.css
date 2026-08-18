@@ -24,9 +24,10 @@
   }
 }
 
-@media (min-width: 64rem) {
+@media (min-width: 96rem) {
   :root {
-    --page-gutter-wide: 10rem;
+    --page-gutter: 15.625rem;
+    --page-gutter-wide: 15.625rem;
   }
 }
 

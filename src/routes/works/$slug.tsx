@@ -38,19 +38,21 @@ function WorkPage() {
   return (
     <ContentEntryPage
       title={work.title}
+      contentClassName="prose-h1:text-[2rem] prose-h1:leading-tight"
+      variant="work"
       titleMeta={
         <p className="text-sm font-semibold tracking-[0.18em] text-gray-500 uppercase">
           {work.organization}
         </p>
       }
       hero={
-        <div className="overflow-hidden rounded-3xl bg-gray-100">
+        <div className="h-full bg-gray-100">
           <Picture
             picture={work.heroPicture}
             className="h-full w-full object-cover"
             alt={work.title}
             priority
-            sizePreset="maxWidth5xl"
+            sizePreset="fullWidth"
           />
         </div>
       }
@@ -59,6 +61,7 @@ function WorkPage() {
         mdx={work.mdx}
         html={work.html}
         contentAssetMap={work.contentAssetMap}
+        imageLayout="work"
       />
     </ContentEntryPage>
   );

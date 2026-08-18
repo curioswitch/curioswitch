@@ -34,23 +34,45 @@ export function ContentEntryPage({
   hero,
   title,
   titleMeta,
+  contentClassName,
+  variant = "default",
 }: {
   children: ReactNode;
   hero: ReactNode;
   title: string;
   titleMeta?: ReactNode;
+  contentClassName?: string;
+  variant?: "default" | "work";
 }) {
+  const isWork = variant === "work";
+
   return (
     <main className="page-gutter bg-white py-12">
       <article className="mx-auto flex max-w-5xl flex-col gap-10">
         <header className="flex flex-col gap-4">
           {titleMeta}
-          <h1 className="text-4xl font-semibold md:text-6xl">{title}</h1>
+          <h1
+            className={`text-4xl font-semibold ${isWork ? "md:text-5xl" : "md:text-6xl"}`}
+          >
+            {title}
+          </h1>
         </header>
 
-        {hero}
+        {isWork && hero !== null && hero !== undefined ? (
+          <div className="relative left-1/2 h-60 w-screen -translate-x-1/2 overflow-hidden md:h-[30rem]">
+            {hero}
+          </div>
+        ) : (
+          hero
+        )}
 
-        <div className="prose prose-lg max-w-none">{children}</div>
+        <div
+          className={["prose prose-lg max-w-none", contentClassName]
+            .filter(Boolean)
+            .join(" ")}
+        >
+          {children}
+        </div>
       </article>
     </main>
   );

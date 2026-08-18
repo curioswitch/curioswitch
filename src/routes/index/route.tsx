@@ -67,7 +67,7 @@ function ServiceList({
     <article className="flex flex-col items-center gap-4 text-center">
       <Icon size={40} aria-hidden="true" />
       <h2 className="text-xl">{category}</h2>
-      <ul className="flex flex-col items-center space-y-2 text-gray-700">
+      <ul className="flex flex-col items-start space-y-2 text-left text-gray-700">
         {children}
       </ul>
     </article>

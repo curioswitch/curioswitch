@@ -69,7 +69,7 @@ describe("home desktop layout", () => {
     expect(overviewGrid?.props.className).toContain("max-w-4xl");
   });
 
-  it("centers the content in each service overview column", () => {
+  it("centers each service column while left-aligning its links", () => {
     const elements = elementChildren(renderHomeTree());
     const serviceListElement = elements.find(
       (element) =>
@@ -93,7 +93,9 @@ describe("home desktop layout", () => {
 
     expect(serviceList.props.className).toContain("items-center");
     expect(serviceList.props.className).toContain("text-center");
-    expect(list?.props.className).toContain("items-center");
+    expect(list?.props.className).toContain("items-start");
+    expect(list?.props.className).toContain("text-left");
+    expect(list?.props.className).not.toContain("items-center");
   });
 
   it("aligns the hero copy with the shared responsive gutter", () => {

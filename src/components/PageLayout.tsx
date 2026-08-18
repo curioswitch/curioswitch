@@ -42,9 +42,10 @@ export function ContentEntryPage({
   title: string;
   titleMeta?: ReactNode;
   contentClassName?: string;
-  variant?: "default" | "work";
+  variant?: "default" | "news" | "work";
 }) {
-  const isWork = variant === "work";
+  const hasCompactTitle = variant === "news" || variant === "work";
+  const hasFullBleedHero = variant === "work";
 
   return (
     <main className="page-gutter bg-white py-12">
@@ -52,13 +53,13 @@ export function ContentEntryPage({
         <header className="flex flex-col gap-4">
           {titleMeta}
           <h1
-            className={`text-4xl font-semibold ${isWork ? "md:text-5xl" : "md:text-6xl"}`}
+            className={`text-4xl font-semibold ${hasCompactTitle ? "md:text-5xl" : "md:text-6xl"}`}
           >
             {title}
           </h1>
         </header>
 
-        {isWork && hero !== null && hero !== undefined ? (
+        {hasFullBleedHero && hero !== null && hero !== undefined ? (
           <div className="relative left-1/2 h-60 w-screen -translate-x-1/2 overflow-hidden md:h-[30rem]">
             {hero}
           </div>

@@ -36,6 +36,19 @@ describe("ContentEntryPage", () => {
     expect(title?.classList.contains("md:text-6xl")).toBe(false);
   });
 
+  it("uses the compact desktop title size for news entries", () => {
+    const { container } = render(
+      <ContentEntryPage title="Example" hero={null} variant="news">
+        <p>Article</p>
+      </ContentEntryPage>,
+    );
+
+    const title = container.querySelector("article > header h1");
+
+    expect(title?.classList.contains("md:text-5xl")).toBe(true);
+    expect(title?.classList.contains("md:text-6xl")).toBe(false);
+  });
+
   it("renders a full-bleed responsive banner for work entries", () => {
     const { container } = render(
       <ContentEntryPage
@@ -53,5 +66,22 @@ describe("ContentEntryPage", () => {
     expect(hero?.classList.contains("md:h-[30rem]")).toBe(true);
     expect(hero?.classList.contains("-translate-x-1/2")).toBe(true);
     expect(hero?.querySelector('img[alt="Hero"]')).not.toBeNull();
+  });
+
+  it("keeps news hero images within the article flow", () => {
+    const { container } = render(
+      <ContentEntryPage
+        title="Example"
+        hero={<div data-news-hero>Hero</div>}
+        variant="news"
+      >
+        <p>Article</p>
+      </ContentEntryPage>,
+    );
+
+    expect(
+      container.querySelector("article > [data-news-hero]"),
+    ).not.toBeNull();
+    expect(container.querySelector("article > .w-screen")).toBeNull();
   });
 });

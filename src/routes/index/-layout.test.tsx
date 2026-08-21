@@ -98,6 +98,50 @@ describe("home desktop layout", () => {
     expect(list?.props.className).not.toContain("items-center");
   });
 
+  it("renders service link icons in black", () => {
+    const elements = elementChildren(renderHomeTree());
+    const serviceListElement = elements.find(
+      (element) =>
+        isValidElement(element) &&
+        typeof element.type === "function" &&
+        element.props.category === m.home_overview_strategy_title(),
+    );
+
+    if (!isValidElement(serviceListElement)) {
+      throw new Error("Service overview list was not rendered");
+    }
+
+    const ServiceListComponent = serviceListElement.type as (
+      props: typeof serviceListElement.props,
+    ) => ReactElement;
+    const serviceList = ServiceListComponent(serviceListElement.props);
+    const serviceLinkElement = elementChildren(serviceList).find(
+      (element) =>
+        isValidElement(element) &&
+        typeof element.type === "function" &&
+        typeof element.props.service === "string",
+    );
+
+    if (!isValidElement(serviceLinkElement)) {
+      throw new Error("Service link was not rendered");
+    }
+
+    const ServiceLinkComponent = serviceLinkElement.type as (
+      props: typeof serviceLinkElement.props,
+    ) => ReactElement;
+    const serviceLink = ServiceLinkComponent(serviceLinkElement.props);
+    const arrowIcon = elementChildren(serviceLink).find(
+      (element) =>
+        isValidElement(element) &&
+        element.props["aria-hidden"] === "true" &&
+        typeof element.props.className === "string" &&
+        element.props.className.includes("-rotate-90"),
+    );
+
+    expect(arrowIcon?.props.className).toContain("text-black");
+    expect(arrowIcon?.props.className).not.toContain("text-gray-400");
+  });
+
   it("aligns the hero copy with the shared responsive gutter", () => {
     const elements = elementChildren(renderHomeTree());
     const homeMain = elements.find(

@@ -45,7 +45,7 @@ function ServiceListItem({ service, href }: { service: string; href: string }) {
     <Link to={href} className="transition hover:text-gray-500">
       <li className="flex items-center gap-2">
         <MdArrowDropDownCircle
-          className="-rotate-90 text-gray-400"
+          className="-rotate-90 text-black"
           aria-hidden="true"
         />
         <span>{service}</span>

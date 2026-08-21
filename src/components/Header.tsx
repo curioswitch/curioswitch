@@ -205,7 +205,7 @@ export default function Header() {
             <NavItemLink
               label={m.common_nav_home()}
               to="/"
-              className="text-4xl font-medium tracking-tight no-underline transition-opacity hover:opacity-70 sm:text-5xl"
+              className="text-3xl font-medium tracking-tight no-underline transition-opacity hover:opacity-70 sm:text-4xl"
               onClick={() => setIsMenuOpen(false)}
             />
             {navItems.map((item) => (
@@ -214,14 +214,14 @@ export default function Header() {
                 label={item.getLabel()}
                 to={item.to}
                 hash={item.hash}
-                className="text-4xl font-medium tracking-tight no-underline transition-opacity hover:opacity-70 sm:text-5xl"
+                className="text-3xl font-medium tracking-tight no-underline transition-opacity hover:opacity-70 sm:text-4xl"
                 onClick={() => setIsMenuOpen(false)}
               />
             ))}
             <NavItemLink
               label={m.common_page_contact()}
               to="/contact"
-              className="text-4xl font-medium tracking-tight no-underline transition-opacity hover:opacity-70 sm:text-5xl"
+              className="text-3xl font-medium tracking-tight no-underline transition-opacity hover:opacity-70 sm:text-4xl"
               onClick={() => setIsMenuOpen(false)}
             />
             <LanguageSwitcher

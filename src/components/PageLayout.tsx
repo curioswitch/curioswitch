@@ -51,6 +51,10 @@ export function ContentEntryPage({
       : variant === "work"
         ? "md:text-5xl"
         : "md:text-6xl";
+  const contentTypographyClass =
+    variant === "work"
+      ? "prose prose-base md:prose-lg prose-h1:text-[1.75rem] md:prose-h1:text-[2rem]"
+      : "prose prose-lg";
 
   return (
     <main className="page-gutter bg-white py-12">
@@ -71,7 +75,7 @@ export function ContentEntryPage({
         )}
 
         <div
-          className={["prose prose-lg max-w-none", contentClassName]
+          className={[contentTypographyClass, "max-w-none", contentClassName]
             .filter(Boolean)
             .join(" ")}
         >

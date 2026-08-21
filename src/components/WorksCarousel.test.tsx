@@ -58,4 +58,21 @@ describe("WorksCarousel", () => {
 
     expect(desktopSlides).toHaveLength(4);
   });
+
+  it("adds the shared left gutter to mobile cards only", () => {
+    const works = [
+      { locale: "ja", slug: "work-1" },
+      { locale: "ja", slug: "work-2" },
+    ] as Parameters<typeof WorksCarousel>[0]["works"];
+    const carousel = WorksCarousel({ works });
+    const viewport = elementChildren(carousel).find(
+      (element) =>
+        isValidElement(element) &&
+        typeof element.props.className === "string" &&
+        element.props.className.includes("overflow-hidden"),
+    );
+
+    expect(viewport?.props.className).toContain("pl-[var(--page-gutter)]");
+    expect(viewport?.props.className).toContain("md:pl-0");
+  });
 });

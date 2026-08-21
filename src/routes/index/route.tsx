@@ -141,10 +141,7 @@ function Home() {
   const { works, news } = Route.useLoaderData();
 
   return (
-    <main
-      className="min-h-screen overflow-x-clip bg-top bg-no-repeat bg-fixed bg-size-[100%_auto]"
-      style={{ backgroundImage: `url(${heroBackground})` }}
-    >
+    <main className="min-h-screen overflow-x-clip">
       <section className="relative flex flex-col justify-end rounded-bl-[4rem] bg-white px-[var(--page-gutter)] pb-10 md:min-h-96 md:justify-center md:px-[var(--page-gutter)] md:py-20">
         <div className="flex max-w-4xl flex-col gap-6 md:gap-8">
           <FadeIn>
@@ -168,7 +165,13 @@ function Home() {
         </a>
       </section>
 
-      <div className="mt-100 rounded-tl-[4rem] bg-white">
+      <div
+        aria-hidden="true"
+        className="aspect-[3/2] w-full bg-cover bg-center bg-no-repeat md:h-[25rem] md:aspect-auto md:bg-fixed md:bg-top md:bg-size-[100%_auto]"
+        style={{ backgroundImage: `url(${heroBackground})` }}
+      />
+
+      <div className="rounded-tl-[4rem] bg-white">
         <section className="page-gutter py-16 hidden md:block">
           <div className="mx-auto grid max-w-4xl gap-10 md:grid-cols-3">
             <FadeIn delay={0}>

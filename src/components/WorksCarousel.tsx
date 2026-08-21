@@ -60,7 +60,10 @@ export default function WorksCarousel({ works }: { works: Work[] }) {
 
   return (
     <div className="mt-10 flex flex-col gap-6 md:gap-8">
-      <div className="overflow-hidden" ref={emblaRef}>
+      <div
+        className="overflow-hidden pl-[var(--page-gutter)] md:pl-0"
+        ref={emblaRef}
+      >
         <div className="-ml-5 flex items-stretch md:-ml-6">
           {works.map((work) => (
             <div

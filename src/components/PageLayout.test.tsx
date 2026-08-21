@@ -36,6 +36,22 @@ describe("ContentEntryPage", () => {
     expect(title?.classList.contains("md:text-6xl")).toBe(false);
   });
 
+  it("uses compact article typography for work entries only on phones", () => {
+    const { container } = render(
+      <ContentEntryPage title="Example" hero={null} variant="work">
+        <h1>Background</h1>
+        <p>Article</p>
+      </ContentEntryPage>,
+    );
+
+    const content = container.querySelector(".prose");
+
+    expect(content?.classList.contains("prose-base")).toBe(true);
+    expect(content?.classList.contains("md:prose-lg")).toBe(true);
+    expect(content?.classList.contains("prose-h1:text-[1.75rem]")).toBe(true);
+    expect(content?.classList.contains("md:prose-h1:text-[2rem]")).toBe(true);
+  });
+
   it("uses a 40 pixel desktop title size for news entries", () => {
     const { container } = render(
       <ContentEntryPage title="Example" hero={null} variant="news">

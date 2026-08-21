@@ -180,6 +180,34 @@ describe("home desktop layout", () => {
     expect(worksArrow?.props.className).toContain("lg:right-40");
   });
 
+  it("renders the hero photo as a mobile banner directly before the content", () => {
+    const elements = elementChildren(renderHomeTree());
+    const backgroundBanner = elements.find(
+      (element) =>
+        isValidElement(element) &&
+        element.type === "div" &&
+        element.props["aria-hidden"] === "true" &&
+        typeof element.props.style?.backgroundImage === "string",
+    );
+
+    expect(backgroundBanner?.props.className).toContain("aspect-[3/2]");
+    expect(backgroundBanner?.props.className).toContain("bg-cover");
+    expect(backgroundBanner?.props.className).toContain("md:h-[25rem]");
+
+    const backgroundIndex = elements.indexOf(backgroundBanner as ReactElement);
+    const contentWrapper = elements
+      .slice(backgroundIndex + 1)
+      .find(
+        (element) =>
+          isValidElement(element) &&
+          element.type === "div" &&
+          typeof element.props.className === "string" &&
+          element.props.className.includes("rounded-tl-[4rem]"),
+      );
+
+    expect(contentWrapper?.props.className).not.toContain("mt-100");
+  });
+
   it("removes the About image's outer gutter only on large screens", () => {
     const elements = elementChildren(renderHomeTree());
     const aboutSection = elements.find(

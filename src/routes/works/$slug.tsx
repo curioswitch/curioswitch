@@ -38,7 +38,7 @@ function WorkPage() {
   return (
     <ContentEntryPage
       title={work.title}
-      contentClassName="prose-h1:text-[2rem] prose-h1:leading-tight"
+      contentClassName="prose-h1:leading-tight"
       variant="work"
       titleMeta={
         <p className="text-sm font-semibold tracking-[0.18em] text-gray-500 uppercase">

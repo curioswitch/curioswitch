@@ -173,6 +173,7 @@ describe("home desktop layout", () => {
     expect(heroSection?.props.className).toContain("md:min-h-96");
     expect(heroSection?.props.className).toContain("md:justify-center");
     expect(heroSection?.props.className).toContain("pt-6");
+    expect(heroSection?.props.className).toContain("pb-16");
     expect(heroSection?.props.className).toContain("md:py-20");
     expect(heroCopy?.props.className).toContain("gap-6");
     expect(heroCopy?.props.className).toContain("md:gap-8");
@@ -180,6 +181,7 @@ describe("home desktop layout", () => {
     expect(worksArrow?.props.className).toContain("md:right-20");
     expect(homeMain?.props.className).toContain("overflow-x-clip");
     expect(worksArrow?.props.className).toContain("lg:right-40");
+    expect(worksArrow?.props.className).toContain("z-20");
   });
 
   it("renders the hero photo as a mobile banner directly before the content", () => {
@@ -188,13 +190,21 @@ describe("home desktop layout", () => {
       (element) =>
         isValidElement(element) &&
         element.type === "div" &&
-        element.props["aria-hidden"] === "true" &&
-        typeof element.props.style?.backgroundImage === "string",
+        element.props.id === "mobile-hero-background-frame",
     );
 
     expect(backgroundBanner?.props.className).toContain("aspect-[3/2]");
-    expect(backgroundBanner?.props.className).toContain("bg-cover");
+    expect(backgroundBanner?.props.className).toContain("overflow-hidden");
     expect(backgroundBanner?.props.className).toContain("md:h-[25rem]");
+    expect(backgroundBanner?.props.style?.backgroundImage).toBeUndefined();
+
+    const mobileImage = elementChildren(backgroundBanner).find(
+      (element) =>
+        isValidElement(element) &&
+        typeof element.type === "function" &&
+        element.type.name === "MobileFixedBackground",
+    );
+    expect(mobileImage).toBeDefined();
 
     const backgroundIndex = elements.indexOf(backgroundBanner as ReactElement);
     const contentWrapper = elements
@@ -208,6 +218,19 @@ describe("home desktop layout", () => {
       );
 
     expect(contentWrapper?.props.className).not.toContain("mt-100");
+  });
+
+  it("uses the mobile fixed-background treatment for the hero photo", () => {
+    const elements = elementChildren(renderHomeTree());
+    const mobileBackground = elements.find(
+      (element) =>
+        isValidElement(element) &&
+        typeof element.type === "function" &&
+        element.type.name === "MobileFixedBackground",
+    );
+
+    expect(mobileBackground).toBeDefined();
+    expect(mobileBackground?.props.image).toBeTruthy();
   });
 
   it("does not repeat the Works heading in English", () => {

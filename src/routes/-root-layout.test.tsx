@@ -18,6 +18,27 @@ function elementChildren(node: ReactNode): ReactNode[] {
 }
 
 describe("root document layout", () => {
+  it("contains horizontal overflow at the mobile root scroller", () => {
+    const Shell = Route.options.shellComponent;
+    if (!Shell) {
+      throw new Error("Root shell is not configured");
+    }
+
+    const tree = (Shell as (props: { children: ReactNode }) => ReactElement)({
+      children: <main />,
+    });
+    const elements = elementChildren(tree);
+    const html = elements.find(
+      (element) => isValidElement(element) && element.type === "html",
+    );
+    const body = elements.find(
+      (element) => isValidElement(element) && element.type === "body",
+    );
+
+    expect(html?.props.className ?? "").toContain("overflow-x-hidden");
+    expect(body?.props.className ?? "").toContain("overflow-x-hidden");
+  });
+
   it("reserves a viewport-height content area while a route is loading", () => {
     const Shell = Route.options.shellComponent;
     if (!Shell) {

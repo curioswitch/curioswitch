@@ -21,6 +21,7 @@ import picServicePrototyping from "../../assets/service-prototyping.webp?w=320;4
 import picServiceUidesign from "../../assets/service-uidesign.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServiceUserTest from "../../assets/service-usertest.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import { FadeIn } from "../../components/FadeIn";
+import MobileFixedBackground from "../../components/MobileFixedBackground";
 import { NewsCard } from "../../components/NewsCard";
 import { Picture } from "../../components/Picture";
 import WorksCarousel from "../../components/WorksCarousel";
@@ -142,7 +143,7 @@ function Home() {
 
   return (
     <main className="min-h-screen overflow-x-clip">
-      <section className="relative flex flex-col justify-end rounded-bl-[4rem] bg-white px-[var(--page-gutter)] pt-6 pb-10 md:min-h-96 md:justify-center md:px-[var(--page-gutter)] md:py-20">
+      <section className="relative flex flex-col justify-end rounded-bl-[4rem] bg-white px-[var(--page-gutter)] pt-6 pb-16 md:min-h-96 md:justify-center md:px-[var(--page-gutter)] md:py-20">
         <div className="flex max-w-4xl flex-col gap-6 md:gap-8">
           <FadeIn>
             <h1 className="text-5xl font-medium whitespace-pre-line md:text-7xl font-sans tracking-[-0.06em]">
@@ -156,7 +157,7 @@ function Home() {
         <a
           href="#works"
           aria-label={m.home_scroll_to_works_label()}
-          className="absolute right-8 bottom-0 flex h-20 w-20 translate-y-1/2 items-center justify-center rounded-full bg-black text-white shadow-[0_12px_32px_rgba(0,0,0,0.28)] transition-transform duration-300 hover:scale-110 md:right-20 md:h-32 md:w-32 lg:right-40"
+          className="absolute right-8 bottom-0 z-20 flex h-20 w-20 translate-y-1/2 items-center justify-center rounded-full bg-black text-white shadow-[0_12px_32px_rgba(0,0,0,0.28)] transition-transform duration-300 hover:scale-110 md:right-20 md:h-32 md:w-32 lg:right-40"
         >
           <MdSouth
             size={32}
@@ -166,10 +167,19 @@ function Home() {
       </section>
 
       <div
-        aria-hidden="true"
-        className="aspect-[3/2] w-full bg-cover bg-center bg-no-repeat md:h-[25rem] md:aspect-auto md:bg-fixed md:bg-top md:bg-size-[100%_auto]"
-        style={{ backgroundImage: `url(${heroBackground})` }}
-      />
+        id="mobile-hero-background-frame"
+        className="relative aspect-[3/2] w-full overflow-hidden md:h-[25rem] md:aspect-auto"
+      >
+        <MobileFixedBackground
+          image={heroBackground}
+          targetId="mobile-hero-background-frame"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat md:block md:bg-fixed md:bg-top md:bg-size-[100%_auto]"
+          style={{ backgroundImage: `url(${heroBackground})` }}
+        />
+      </div>
 
       <div className="rounded-tl-[4rem] bg-white">
         <section className="page-gutter py-16 hidden md:block">

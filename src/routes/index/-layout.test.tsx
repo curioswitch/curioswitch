@@ -172,6 +172,8 @@ describe("home desktop layout", () => {
     expect(heroSection?.props.className).not.toContain("md:px-[7.8125vw]");
     expect(heroSection?.props.className).toContain("md:min-h-96");
     expect(heroSection?.props.className).toContain("md:justify-center");
+    expect(heroSection?.props.className).toContain("pt-6");
+    expect(heroSection?.props.className).toContain("md:py-20");
     expect(heroCopy?.props.className).toContain("gap-6");
     expect(heroCopy?.props.className).toContain("md:gap-8");
     expect(heroCopy?.props.className).not.toContain("lg:ml-");
@@ -206,6 +208,24 @@ describe("home desktop layout", () => {
       );
 
     expect(contentWrapper?.props.className).not.toContain("mt-100");
+  });
+
+  it("does not repeat the Works heading in English", () => {
+    const elements = elementChildren(renderHomeTree());
+    const worksSection = elements.find(
+      (element) =>
+        isValidElement(element) &&
+        element.type === "section" &&
+        element.props.id === "works",
+    );
+    const englishSubtitle = elementChildren(worksSection).find(
+      (element) =>
+        isValidElement(element) &&
+        element.type === "p" &&
+        hasText(element, "Works"),
+    );
+
+    expect(englishSubtitle).toBeUndefined();
   });
 
   it("removes the About image's outer gutter only on large screens", () => {

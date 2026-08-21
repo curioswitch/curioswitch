@@ -142,7 +142,7 @@ function Home() {
 
   return (
     <main className="min-h-screen overflow-x-clip">
-      <section className="relative flex flex-col justify-end rounded-bl-[4rem] bg-white px-[var(--page-gutter)] pb-10 md:min-h-96 md:justify-center md:px-[var(--page-gutter)] md:py-20">
+      <section className="relative flex flex-col justify-end rounded-bl-[4rem] bg-white px-[var(--page-gutter)] pt-6 pb-10 md:min-h-96 md:justify-center md:px-[var(--page-gutter)] md:py-20">
         <div className="flex max-w-4xl flex-col gap-6 md:gap-8">
           <FadeIn>
             <h1 className="text-5xl font-medium whitespace-pre-line md:text-7xl font-sans tracking-[-0.06em]">
@@ -231,7 +231,6 @@ function Home() {
               <h2 className="text-2xl md:text-3xl font-bold">
                 {m.common_page_works()}
               </h2>
-              <p className="text-gray-500 mt-2">Works</p>
             </FadeIn>
           </div>
           <WorksCarousel works={works} />

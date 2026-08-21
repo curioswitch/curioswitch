@@ -34,23 +34,53 @@ export function ContentEntryPage({
   hero,
   title,
   titleMeta,
+  contentClassName,
+  variant = "default",
 }: {
   children: ReactNode;
   hero: ReactNode;
   title: string;
   titleMeta?: ReactNode;
+  contentClassName?: string;
+  variant?: "default" | "news" | "work";
 }) {
+  const hasFullBleedHero = variant === "work";
+  const titleSizeClass =
+    variant === "news"
+      ? "md:text-[2.5rem]"
+      : variant === "work"
+        ? "md:text-5xl"
+        : "md:text-6xl";
+  const contentTypographyClass =
+    variant === "work"
+      ? "prose prose-base md:prose-lg prose-h1:text-[1.75rem] md:prose-h1:text-[2rem]"
+      : "prose prose-lg";
+
   return (
     <main className="page-gutter bg-white py-12">
       <article className="mx-auto flex max-w-5xl flex-col gap-10">
         <header className="flex flex-col gap-4">
           {titleMeta}
-          <h1 className="text-4xl font-semibold md:text-6xl">{title}</h1>
+          <h1 className={`text-4xl font-semibold ${titleSizeClass}`}>
+            {title}
+          </h1>
         </header>
 
-        {hero}
+        {hasFullBleedHero && hero !== null && hero !== undefined ? (
+          <div className="relative left-1/2 h-60 w-screen -translate-x-1/2 overflow-hidden md:h-[30rem]">
+            {hero}
+          </div>
+        ) : (
+          hero
+        )}
 
-        <div className="prose prose-lg max-w-none">{children}</div>
+        <div
+          className={[contentTypographyClass, "max-w-none", contentClassName]
+            .filter(Boolean)
+            .join(" ")}
+        >
+          {children}
+        </div>
       </article>
     </main>
   );

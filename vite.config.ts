@@ -11,6 +11,10 @@ const config = defineConfig(({ command }) => ({
   resolve: {
     tsconfigPaths: true,
   },
+  server: {
+    // Avoid a feedback loop when browser errors are also shown by devtools.
+    forwardConsole: false,
+  },
   plugins: [
     devtools(),
     paraglideVitePlugin({

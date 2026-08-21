@@ -126,7 +126,7 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-50 isolate px-4 md:px-8 backdrop-blur-lg">
-        <nav className="page-wrap grid grid-cols-[1fr_auto] items-center py-8 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:py-0">
+        <nav className="page-wrap grid grid-cols-[1fr_auto] items-center py-4 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:py-0">
           <h2 className="m-0 text-base font-semibold tracking-tight md:justify-self-start md:py-8">
             <Link
               to="/"
@@ -201,11 +201,11 @@ export default function Header() {
             </button>
           </div>
 
-          <div className="flex flex-1 flex-col justify-center gap-5 py-8">
+          <div className="flex flex-1 flex-col justify-start gap-4 pt-12 pb-8">
             <NavItemLink
               label={m.common_nav_home()}
               to="/"
-              className="text-4xl font-medium tracking-tight no-underline transition-opacity hover:opacity-70 sm:text-5xl"
+              className="text-xl font-medium tracking-tight no-underline transition-opacity hover:opacity-70 sm:text-2xl"
               onClick={() => setIsMenuOpen(false)}
             />
             {navItems.map((item) => (
@@ -214,14 +214,14 @@ export default function Header() {
                 label={item.getLabel()}
                 to={item.to}
                 hash={item.hash}
-                className="text-4xl font-medium tracking-tight no-underline transition-opacity hover:opacity-70 sm:text-5xl"
+                className="text-xl font-medium tracking-tight no-underline transition-opacity hover:opacity-70 sm:text-2xl"
                 onClick={() => setIsMenuOpen(false)}
               />
             ))}
             <NavItemLink
               label={m.common_page_contact()}
               to="/contact"
-              className="text-4xl font-medium tracking-tight no-underline transition-opacity hover:opacity-70 sm:text-5xl"
+              className="text-xl font-medium tracking-tight no-underline transition-opacity hover:opacity-70 sm:text-2xl"
               onClick={() => setIsMenuOpen(false)}
             />
             <LanguageSwitcher

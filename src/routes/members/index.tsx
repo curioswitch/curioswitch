@@ -55,15 +55,11 @@ function getMemberProfiles(): MemberProfile[] {
       ],
     },
     {
-      name: "Kyon",
+      name: "Skop",
       image: picMembersKyon,
       role: m.members_kyon_role(),
       title: m.members_kyon_title(),
-      intro: [
-        m.members_kyon_intro_1(),
-        m.members_kyon_intro_2(),
-        m.members_kyon_intro_3(),
-      ],
+      intro: [m.members_kyon_intro_1(), m.members_kyon_intro_2()],
       career: [
         m.members_kyon_career_1(),
         m.members_kyon_career_2(),
@@ -130,18 +126,18 @@ function MemberCard({
 }: MemberProfile) {
   return (
     <article className="page-gutter-wide border-t border-gray-100 py-10 lg:py-20">
-      <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(20rem,1fr)]">
-        <div className="order-2 lg:order-1">
-          <header className="flex flex-col gap-3">
-            <p className="text-sm font-medium tracking-[0.24em] text-orange-500 uppercase">
-              {role}
-            </p>
-            <h2 className="text-3xl font-medium md:text-4xl">{name}</h2>
-            <p className="text-lg text-gray-600">{title}</p>
-          </header>
-          <div className="mt-8 space-y-4 text-gray-800">
+      <div className="grid gap-x-12 gap-y-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(20rem,1fr)]">
+        <header className="order-2 flex flex-col gap-3 lg:col-start-1 lg:row-start-1">
+          <p className="text-sm font-medium tracking-[0.24em] text-orange-500 uppercase">
+            {role}
+          </p>
+          <h2 className="text-3xl font-medium md:text-4xl">{name}</h2>
+          <p className="text-lg text-gray-600">{title}</p>
+        </header>
+        <div className="order-3 lg:col-start-1 lg:row-start-2">
+          <div className="space-y-4 text-gray-800">
             {intro.map((paragraph) => (
-              <p key={paragraph} className="leading-8">
+              <p key={paragraph} className="leading-8 whitespace-pre-line">
                 {paragraph}
               </p>
             ))}
@@ -177,7 +173,7 @@ function MemberCard({
             ) : null}
           </div>
         </div>
-        <div className="order-1 lg:order-2">
+        <div className="order-1 lg:col-start-2 lg:row-start-2">
           <Picture
             picture={image}
             alt={m.members_profile_alt({ name })}

@@ -68,13 +68,16 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={getLocale()}>
+    <html
+      lang={getLocale()}
+      className="overflow-x-hidden md:overflow-x-visible"
+    >
       <head>
         <HeadContent />
       </head>
-      <body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
+      <body className="overflow-x-hidden font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)] md:overflow-x-visible">
         <Header />
-        {children}
+        <div className="min-h-dvh">{children}</div>
         <Footer />
         <TanStackDevtools
           config={{

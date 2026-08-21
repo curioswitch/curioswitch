@@ -37,7 +37,9 @@ describe("CollectionContent", () => {
       container.querySelectorAll("picture source"),
     );
 
-    expect(pictureElement?.getAttribute("class")).toBe("block rounded-xl");
+    expect(pictureElement?.getAttribute("class")).toBe(
+      "block max-w-3xl mx-auto rounded-xl",
+    );
     expect(imageElement?.getAttribute("src")).toBe("/images/example.jpg");
     expect(imageElement?.getAttribute("width")).toBe("1280");
     expect(imageElement?.getAttribute("height")).toBe("720");
@@ -63,5 +65,29 @@ describe("CollectionContent", () => {
     expect(container.querySelector("img")?.getAttribute("src")).toBe(
       "https://example.com/example.jpg",
     );
+  });
+
+  it("renders consecutive work images as a compact responsive grid", () => {
+    const { container } = render(
+      <CollectionContent
+        mdx={null}
+        html={
+          '<p><img src="./first.webp" alt="First">\n<img src="./second.webp" alt="Second"></p>'
+        }
+        contentAssetMap={{
+          "./first.webp": picture,
+          "./second.webp": picture,
+        }}
+        imageLayout="work"
+      />,
+    );
+
+    const grid = container.querySelector(".work-image-grid");
+    const pictures = Array.from(grid?.querySelectorAll("picture") ?? []);
+
+    expect(grid?.classList.contains("md:grid-cols-2")).toBe(true);
+    expect(pictures).toHaveLength(2);
+    expect(pictures[0]?.classList.contains("max-w-2xl")).toBe(true);
+    expect(pictures[0]?.classList.contains("w-full")).toBe(true);
   });
 });

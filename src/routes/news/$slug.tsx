@@ -35,8 +35,9 @@ function Article() {
   return (
     <ContentEntryPage
       title={article.title}
+      variant="news"
       hero={
-        <div className="overflow-hidden rounded-3xl bg-gray-100">
+        <div className="mx-auto aspect-4/3 w-full max-w-[700px] overflow-hidden bg-gray-100">
           <Picture
             picture={article.heroPicture}
             className="h-full w-full object-cover"

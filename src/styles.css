@@ -1,15 +1,13 @@
 @import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/noto-sans-jp/wght.css";
 @import "@fontsource/lato/400.css";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @theme {
   --font-sans:
-    "Inter Variable", Inter, "ヒラギノ角ゴ W5 JIS2004", "Hiragino Sans W5",
-    "Hiragino Sans", system-ui, sans-serif;
-  --font-paragraph:
-    "Lato", "ヒラギノ角ゴ W3 JIS2004", "Hiragino Sans W3", "Hiragino Sans",
-    system-ui, sans-serif;
+    "Inter Variable", Inter, "Noto Sans JP Variable", system-ui, sans-serif;
+  --font-paragraph: "Lato", "Noto Sans JP Variable", system-ui, sans-serif;
 }
 
 :root {
@@ -24,9 +22,10 @@
   }
 }
 
-@media (min-width: 64rem) {
+@media (min-width: 96rem) {
   :root {
-    --page-gutter-wide: 10rem;
+    --page-gutter: 15.625rem;
+    --page-gutter-wide: 15.625rem;
   }
 }
 

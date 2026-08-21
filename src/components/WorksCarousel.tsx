@@ -26,7 +26,7 @@ function CarouselWorkCard({ work }: { work: Work }) {
           sizePreset="carousel"
         />
       </div>
-      <div className="flex flex-1 flex-col gap-6 p-6 md:p-8 lg:p-10 items-center">
+      <div className="flex flex-1 flex-col gap-6 p-6 items-center">
         <p className="flex items-center gap-2 text-xs tracking-[0.14em] text-gray-500 uppercase w-[90%]">
           <MdBusiness />
           {work.organization}
@@ -44,7 +44,13 @@ function CarouselWorkCard({ work }: { work: Work }) {
 
 export default function WorksCarousel({ works }: { works: Work[] }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "center",
+    align: "start",
+    breakpoints: {
+      "(min-width: 64rem)": {
+        align: "center",
+        slidesToScroll: 2,
+      },
+    },
     loop: works.length > 2,
   });
 
@@ -54,12 +60,15 @@ export default function WorksCarousel({ works }: { works: Work[] }) {
 
   return (
     <div className="mt-10 flex flex-col gap-6 md:gap-8">
-      <div className="overflow-hidden" ref={emblaRef}>
+      <div
+        className="overflow-hidden pl-[var(--page-gutter)] md:pl-0"
+        ref={emblaRef}
+      >
         <div className="-ml-5 flex items-stretch md:-ml-6">
           {works.map((work) => (
             <div
               key={`${work.locale}:${work.slug}`}
-              className="min-w-0 flex-[0_0_88%] pl-5 md:flex-[0_0_72%] md:pl-6 lg:flex-[0_0_45%]"
+              className="min-w-0 flex-[0_0_88%] pl-5 md:flex-[0_0_50%] md:pl-6 lg:flex-[0_0_32%]"
             >
               <CarouselWorkCard work={work} />
             </div>

@@ -21,6 +21,7 @@ import picServicePrototyping from "../../assets/service-prototyping.webp?w=320;4
 import picServiceUidesign from "../../assets/service-uidesign.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServiceUserTest from "../../assets/service-usertest.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import { FadeIn } from "../../components/FadeIn";
+import MobileFixedBackground from "../../components/MobileFixedBackground";
 import { NewsCard } from "../../components/NewsCard";
 import { Picture } from "../../components/Picture";
 import WorksCarousel from "../../components/WorksCarousel";
@@ -45,7 +46,7 @@ function ServiceListItem({ service, href }: { service: string; href: string }) {
     <Link to={href} className="transition hover:text-gray-500">
       <li className="flex items-center gap-2">
         <MdArrowDropDownCircle
-          className="-rotate-90 text-gray-400"
+          className="-rotate-90 text-black"
           aria-hidden="true"
         />
         <span>{service}</span>
@@ -64,10 +65,12 @@ function ServiceList({
   children: ReactNode;
 }) {
   return (
-    <article className="flex flex-col gap-4">
+    <article className="flex flex-col items-center gap-4 text-center">
       <Icon size={40} aria-hidden="true" />
       <h2 className="text-xl">{category}</h2>
-      <ul className="space-y-2 text-gray-700 flex flex-col">{children}</ul>
+      <ul className="flex flex-col items-start space-y-2 text-left text-gray-700">
+        {children}
+      </ul>
     </article>
   );
 }
@@ -139,11 +142,8 @@ function Home() {
   const { works, news } = Route.useLoaderData();
 
   return (
-    <main
-      className="min-h-screen bg-top bg-no-repeat bg-fixed bg-size-[100%_auto]"
-      style={{ backgroundImage: `url(${heroBackground})` }}
-    >
-      <section className="page-gutter relative flex flex-col justify-end md:justify-center rounded-bl-[4rem] bg-white pb-10 md:min-h-96 md:py-20">
+    <main className="min-h-screen overflow-x-clip">
+      <section className="relative flex flex-col justify-end rounded-bl-[4rem] bg-white px-[var(--page-gutter)] pt-6 pb-16 md:min-h-96 md:justify-center md:px-[var(--page-gutter)] md:py-20">
         <div className="flex max-w-4xl flex-col gap-6 md:gap-8">
           <FadeIn>
             <h1 className="text-5xl font-medium whitespace-pre-line md:text-7xl font-sans tracking-[-0.06em]">
@@ -157,7 +157,7 @@ function Home() {
         <a
           href="#works"
           aria-label={m.home_scroll_to_works_label()}
-          className="absolute right-8 bottom-0 flex h-20 w-20 translate-y-1/2 items-center justify-center rounded-full bg-black text-white shadow-[0_12px_32px_rgba(0,0,0,0.28)] transition-transform duration-300 hover:scale-110 md:right-20 md:h-32 md:w-32"
+          className="absolute right-8 bottom-0 z-20 flex h-20 w-20 translate-y-1/2 items-center justify-center rounded-full bg-black text-white shadow-[0_12px_32px_rgba(0,0,0,0.28)] transition-transform duration-300 hover:scale-110 md:right-20 md:h-32 md:w-32 lg:right-40"
         >
           <MdSouth
             size={32}
@@ -166,9 +166,24 @@ function Home() {
         </a>
       </section>
 
-      <div className="mt-100 rounded-tl-[4rem] bg-white">
+      <div
+        id="mobile-hero-background-frame"
+        className="relative aspect-[3/2] w-full overflow-hidden md:h-[25rem] md:aspect-auto"
+      >
+        <MobileFixedBackground
+          image={heroBackground}
+          targetId="mobile-hero-background-frame"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat md:block md:bg-fixed md:bg-top md:bg-size-[100%_auto]"
+          style={{ backgroundImage: `url(${heroBackground})` }}
+        />
+      </div>
+
+      <div className="rounded-tl-[4rem] bg-white">
         <section className="page-gutter py-16 hidden md:block">
-          <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-3">
+          <div className="mx-auto grid max-w-4xl gap-10 md:grid-cols-3">
             <FadeIn delay={0}>
               <ServiceList
                 category={m.home_overview_strategy_title()}
@@ -226,7 +241,6 @@ function Home() {
               <h2 className="text-2xl md:text-3xl font-bold">
                 {m.common_page_works()}
               </h2>
-              <p className="text-gray-500 mt-2">Works</p>
             </FadeIn>
           </div>
           <WorksCarousel works={works} />
@@ -322,7 +336,7 @@ function Home() {
           </div>
         </section>
 
-        <section className="page-gutter grid grid-cols-1 items-center gap-20 py-10 md:grid-cols-2 lg:py-20">
+        <section className="grid grid-cols-1 items-center gap-20 px-[var(--page-gutter)] py-10 md:grid-cols-2 lg:px-0 lg:py-0">
           <FadeIn
             direction="left"
             className="overflow-hidden rounded-xl lg:rounded-none lg:rounded-tr-4xl"
@@ -334,7 +348,7 @@ function Home() {
               sizePreset="twoColumn"
             />
           </FadeIn>
-          <FadeIn direction="right">
+          <FadeIn direction="right" className="lg:pr-[var(--page-gutter)]">
             <h2 className="mb-10 text-2xl md:text-3xl font-bold">
               {m.home_about_title()}
             </h2>

@@ -6,6 +6,7 @@ import { PICTURE_SIZE_PRESETS, serializePictureSizes } from "./Picture";
 
 type ContentAssetMap = Record<string, ImageToolsPicture | undefined>;
 type HtmlAttributes = Record<string, string | true | undefined>;
+type ImageLayout = "default" | "work";
 
 const CONTENT_IMAGE_SIZES = serializePictureSizes(
   PICTURE_SIZE_PRESETS.maxWidth5xl,
@@ -13,10 +14,16 @@ const CONTENT_IMAGE_SIZES = serializePictureSizes(
 const HTML_ATTRIBUTE_PATTERN =
   /([^\s=/>]+)(?:=(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
 
-function mergeBlockClassName(className?: string) {
-  return className
-    ? `block max-w-3xl mx-auto ${className}`
-    : "block max-w-3xl mx-auto";
+function mergeBlockClassName(
+  className?: string,
+  imageLayout: ImageLayout = "default",
+) {
+  const layoutClassName =
+    imageLayout === "work"
+      ? "block w-full max-w-2xl mx-auto"
+      : "block max-w-3xl mx-auto";
+
+  return className ? `${layoutClassName} ${className}` : layoutClassName;
 }
 
 function renderPictureSources(picture: ImageToolsPicture) {
@@ -76,12 +83,14 @@ function parseHtmlAttributes(tag: string) {
 function renderPictureHtml(
   picture: ImageToolsPicture,
   originalAttributes: HtmlAttributes,
+  imageLayout: ImageLayout,
 ) {
   const imageAttributes = { ...originalAttributes };
   const className = mergeBlockClassName(
     typeof imageAttributes.class === "string"
       ? imageAttributes.class
       : undefined,
+    imageLayout,
   );
 
   delete imageAttributes.src;
@@ -123,7 +132,11 @@ function renderPictureHtml(
   return `<picture${serializeHtmlAttributes({ class: className })}>${sourceMarkup}<img${serializeHtmlAttributes(imageAttributes)}></picture>`;
 }
 
-function replaceImagesInHtml(html: string, contentAssetMap: ContentAssetMap) {
+function replaceImagesInHtml(
+  html: string,
+  contentAssetMap: ContentAssetMap,
+  imageLayout: ImageLayout,
+) {
   return html.replace(/<img\b[^>]*>/g, (tag) => {
     const attributes = parseHtmlAttributes(tag);
     const src = typeof attributes.src === "string" ? attributes.src : undefined;
@@ -138,8 +151,29 @@ function replaceImagesInHtml(html: string, contentAssetMap: ContentAssetMap) {
       return tag;
     }
 
-    return renderPictureHtml(picture, attributes);
+    return renderPictureHtml(picture, attributes, imageLayout);
   });
+}
+
+function groupConsecutiveWorkImages(html: string) {
+  const renderGrid = (pictureMarkup: string) => {
+    const pictures = Array.from(
+      pictureMarkup.matchAll(/<picture\b[\s\S]*?<\/picture>/gi),
+      ([picture]) => picture,
+    );
+
+    return `<div class="work-image-grid not-prose mx-auto my-8 grid max-w-4xl gap-6 md:grid-cols-2">${pictures.join("")}</div>`;
+  };
+
+  const groupedParagraphImages = html.replace(
+    /<p>\s*((?:<picture\b[\s\S]*?<\/picture>\s*){2,})<\/p>/gi,
+    (_imageParagraph, pictures) => renderGrid(pictures),
+  );
+
+  return groupedParagraphImages.replace(
+    /(?:<p>\s*<picture\b[\s\S]*?<\/picture>\s*<\/p>\s*){2,}/gi,
+    (imageParagraphs) => renderGrid(imageParagraphs),
+  );
 }
 
 function ContentImage({
@@ -153,9 +187,11 @@ function ContentImage({
   srcSet: _srcSet,
   sizes: _sizes,
   contentAssetMap,
+  imageLayout,
   ...props
 }: ComponentProps<"img"> & {
   contentAssetMap: ContentAssetMap;
+  imageLayout: ImageLayout;
 }) {
   const picture =
     typeof src === "string" ? (contentAssetMap[src] ?? undefined) : undefined;
@@ -164,7 +200,7 @@ function ContentImage({
     return <img {...props} src={src} alt={alt} className={className} />;
   }
 
-  const resolvedClassName = mergeBlockClassName(className);
+  const resolvedClassName = mergeBlockClassName(className, imageLayout);
 
   return (
     <picture className={resolvedClassName}>
@@ -187,10 +223,12 @@ export function CollectionContent({
   mdx,
   html,
   contentAssetMap,
+  imageLayout = "default",
 }: {
   mdx: string | null;
   html: string | null;
   contentAssetMap?: ContentAssetMap;
+  imageLayout?: ImageLayout;
 }) {
   const assetMap = contentAssetMap ?? {};
 
@@ -200,7 +238,11 @@ export function CollectionContent({
         code={mdx}
         components={{
           img: (props) => (
-            <ContentImage {...props} contentAssetMap={assetMap} />
+            <ContentImage
+              {...props}
+              contentAssetMap={assetMap}
+              imageLayout={imageLayout}
+            />
           ),
         }}
       />
@@ -211,7 +253,12 @@ export function CollectionContent({
     <div
       // biome-ignore lint/security/noDangerouslySetInnerHtml: compiled by remark
       dangerouslySetInnerHTML={{
-        __html: replaceImagesInHtml(html ?? "", assetMap),
+        __html:
+          imageLayout === "work"
+            ? groupConsecutiveWorkImages(
+                replaceImagesInHtml(html ?? "", assetMap, imageLayout),
+              )
+            : replaceImagesInHtml(html ?? "", assetMap, imageLayout),
       }}
     />
   );

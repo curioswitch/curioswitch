@@ -9,6 +9,12 @@ const COLORS = {
   green: "#a9dc4f",
 } as const;
 
+const PETAL_ANGLES = {
+  5: [0, 72, 144, 216, 288],
+  6: [0, 60, 120, 180, 240, 300],
+  8: [0, 45, 90, 135, 180, 225, 270, 315],
+} as const;
+
 function Flower({ item }: { item: BloomItem }) {
   const petalCount = [5, 6, 8][item.variant % 3];
   const petalWidth = item.variant % 3 === 1 ? 20 : 24;
@@ -17,15 +23,15 @@ function Flower({ item }: { item: BloomItem }) {
   return (
     <svg viewBox="0 0 100 100" className="h-full w-full drop-shadow-md">
       <title>Flower</title>
-      {Array.from({ length: petalCount }, (_, index) => (
+      {PETAL_ANGLES[petalCount as keyof typeof PETAL_ANGLES].map((angle) => (
         <ellipse
-          key={`${petalCount}-${index}`}
+          key={angle}
           cx="50"
           cy={50 - petalHeight / 2}
           rx={petalWidth / 2}
           ry={petalHeight / 2}
           fill={COLORS[item.color]}
-          transform={`rotate(${(360 / petalCount) * index} 50 50)`}
+          transform={`rotate(${angle} 50 50)`}
         />
       ))}
       <circle cx="50" cy="50" r="14" fill="#fff7d5" />

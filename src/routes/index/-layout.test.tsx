@@ -251,6 +251,36 @@ describe("home desktop layout", () => {
     expect(englishSubtitle).toBeUndefined();
   });
 
+  it("keeps every capability image at the same aspect ratio", () => {
+    const elements = elementChildren(renderHomeTree());
+    const openSourceCardElement = elements.find(
+      (element) =>
+        isValidElement(element) &&
+        typeof element.type === "function" &&
+        element.type.name === "CapabilityCard" &&
+        element.props.href === "/services/oss",
+    );
+
+    if (!isValidElement(openSourceCardElement)) {
+      throw new Error("Open source capability card was not rendered");
+    }
+
+    const CapabilityCardComponent = openSourceCardElement.type as (
+      props: typeof openSourceCardElement.props,
+    ) => ReactElement;
+    const capabilityCard = CapabilityCardComponent(openSourceCardElement.props);
+    const imageFrame = elementChildren(capabilityCard).find(
+      (element) =>
+        isValidElement(element) &&
+        element.type === "div" &&
+        typeof element.props.className === "string" &&
+        element.props.className.includes("aspect-16/9"),
+    );
+
+    expect(imageFrame).toBeDefined();
+    expect(imageFrame?.props.className).toContain("overflow-hidden");
+  });
+
   it("removes the About image's outer gutter only on large screens", () => {
     const elements = elementChildren(renderHomeTree());
     const aboutSection = elements.find(

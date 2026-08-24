@@ -1,7 +1,7 @@
 ---
 title: "Open Source Projects"
 organization: "CurioSwitch"
-heroImage: "./003-oss-projects.hero.webp"
+heroImage: "./003-oss-projects.hero.png"
 ---
 
 ## CurioSwitch's Open Source Projects

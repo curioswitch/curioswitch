@@ -15,7 +15,7 @@ import picServiceCreativeLab from "../../assets/home-service-creativelab-cooking
 import picServiceDesign from "../../assets/home-service-design-exhibition.png?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import picServiceStudio from "../../assets/home-service-studio-concept-phone.png?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import picServiceEngineering from "../../assets/service-engineering.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
-import picServiceOss from "../../assets/service-oss.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
+import picServiceOss from "../../assets/service-oss-laptop.png?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServicePlanning from "../../assets/service-planning.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServicePrototyping from "../../assets/service-prototyping.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServiceUidesign from "../../assets/service-uidesign.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
@@ -126,12 +126,14 @@ function CapabilityCard({
   return (
     <Link to={href} className="group block">
       <article className="overflow-hidden rounded-xl border border-gray-200 bg-white transition-[border-color,box-shadow] duration-200 group-hover:border-gray-400">
-        <Picture
-          picture={picture}
-          className="block w-full"
-          alt={alt}
-          sizePreset="threeColumn"
-        />
+        <div className="aspect-16/9 overflow-hidden bg-gray-100">
+          <Picture
+            picture={picture}
+            className="h-full w-full object-cover"
+            alt={alt}
+            sizePreset="threeColumn"
+          />
+        </div>
         <h3 className="p-8 text-lg">{title}</h3>
       </article>
     </Link>

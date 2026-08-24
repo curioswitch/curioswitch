@@ -11,9 +11,9 @@ import {
 
 import heroBackground from "../../assets/hero-background.jpeg";
 import picHomeAboutUs from "../../assets/home-about-us.jpg?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
-import picServiceCreativeLab from "../../assets/home-service-creativelab.webp?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
-import picServiceDesign from "../../assets/home-service-design.webp?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
-import picServiceStudio from "../../assets/home-service-studio.webp?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
+import picServiceCreativeLab from "../../assets/home-service-creativelab-cooking.png?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
+import picServiceDesign from "../../assets/home-service-design-exhibition.png?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
+import picServiceStudio from "../../assets/home-service-studio-concept-phone.png?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import picServiceEngineering from "../../assets/service-engineering.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServiceOss from "../../assets/service-oss.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServicePlanning from "../../assets/service-planning.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";

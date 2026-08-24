@@ -185,6 +185,23 @@ function Home() {
 
       <div className="rounded-tl-[4rem] bg-white">
         <section className="page-gutter py-16 hidden md:block">
+          <FadeIn>
+            <div
+              role="note"
+              aria-labelledby="ai-expertise-overview-heading"
+              className="mx-auto mb-12 max-w-4xl md:flex md:items-start md:gap-12"
+            >
+              <h2
+                id="ai-expertise-overview-heading"
+                className="shrink-0 text-xl font-bold md:text-2xl"
+              >
+                {m.home_overview_ai_title()}
+              </h2>
+              <p className="mt-4 whitespace-pre-line text-sm leading-7 text-gray-700 md:mt-0">
+                {m.home_overview_ai_description()}
+              </p>
+            </div>
+          </FadeIn>
           <div className="mx-auto grid max-w-4xl gap-10 md:grid-cols-3">
             <FadeIn delay={0}>
               <ServiceList
@@ -288,54 +305,120 @@ function Home() {
 
         <section className="page-gutter border-t border-gray-200 bg-gray-50 py-10 lg:py-20">
           <FadeIn>
-            <h2 className="mb-10 text-2xl md:text-3xl font-bold">
+            <p className="text-sm font-semibold tracking-[0.14em] text-gray-500">
               {m.home_capabilities_heading()}
+            </p>
+            <h2 className="mt-4 max-w-4xl text-3xl font-bold leading-tight md:text-5xl">
+              {m.home_capabilities_ai_heading()}
             </h2>
+            <p className="mt-6 max-w-3xl whitespace-pre-line text-base leading-8 text-gray-600">
+              {m.home_capabilities_ai_intro()}
+            </p>
           </FadeIn>
-          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                alt: m.home_capability_planning_title(),
-                picture: picServicePlanning,
-                title: m.home_capability_planning_title(),
-                href: "/services/planning",
-              },
-              {
-                alt: m.home_capability_prototyping_title(),
-                picture: picServicePrototyping,
-                title: m.home_capability_prototyping_title(),
-                href: "/services/prototyping",
-              },
-              {
-                alt: m.home_capability_engineering_title(),
-                picture: picServiceEngineering,
-                title: m.home_capability_engineering_title(),
-                href: "/services/engineering",
-              },
-              {
-                alt: m.home_capability_uiux_title(),
-                picture: picServiceUidesign,
-                title: m.home_capability_uiux_title(),
-                href: "/services/uiux",
-              },
-              {
-                alt: m.home_capability_user_testing_title(),
-                picture: picServiceUserTest,
-                title: m.home_capability_user_testing_title(),
-                href: "/services/usertest",
-              },
-              {
-                alt: m.home_capability_open_source_title(),
-                picture: picServiceOss,
-                title: m.home_capability_open_source_title(),
-                href: "/services/oss",
-              },
-            ].map((card, i) => (
-              <FadeIn key={card.href} delay={i * 80}>
-                <CapabilityCard {...card} />
-              </FadeIn>
-            ))}
-          </div>
+
+          <section
+            className="mt-12 lg:mt-16"
+            aria-labelledby="ai-development-process-heading"
+          >
+            <FadeIn>
+              <h3
+                id="ai-development-process-heading"
+                className="text-xl font-bold md:text-2xl"
+              >
+                {m.home_capabilities_ai_process_heading()}
+              </h3>
+            </FadeIn>
+            <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {[
+                {
+                  title: m.home_capabilities_ai_research_title(),
+                  body: m.home_capabilities_ai_research_body(),
+                },
+                {
+                  title: m.home_capabilities_ai_prototype_title(),
+                  body: m.home_capabilities_ai_prototype_body(),
+                },
+                {
+                  title: m.home_capabilities_ai_build_title(),
+                  body: m.home_capabilities_ai_build_body(),
+                },
+                {
+                  title: m.home_capabilities_ai_validate_title(),
+                  body: m.home_capabilities_ai_validate_body(),
+                },
+              ].map((step, i) => (
+                <FadeIn key={step.title} delay={i * 80}>
+                  <article className="flex h-full flex-col gap-4 rounded-xl border border-gray-200 bg-white p-6 md:p-8">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-yellow-300 text-sm font-bold">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h4 className="text-lg font-semibold">{step.title}</h4>
+                    <p className="text-sm leading-7 text-gray-600">
+                      {step.body}
+                    </p>
+                  </article>
+                </FadeIn>
+              ))}
+            </div>
+          </section>
+
+          <section
+            className="mt-14 lg:mt-20"
+            aria-labelledby="core-expertise-heading"
+          >
+            <FadeIn>
+              <h3
+                id="core-expertise-heading"
+                className="text-xl font-bold md:text-2xl"
+              >
+                {m.home_capabilities_expertise_heading()}
+              </h3>
+            </FadeIn>
+            <div className="mt-6 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+              {[
+                {
+                  alt: m.home_capability_planning_title(),
+                  picture: picServicePlanning,
+                  title: m.home_capability_planning_title(),
+                  href: "/services/planning",
+                },
+                {
+                  alt: m.home_capability_prototyping_title(),
+                  picture: picServicePrototyping,
+                  title: m.home_capability_prototyping_title(),
+                  href: "/services/prototyping",
+                },
+                {
+                  alt: m.home_capability_engineering_title(),
+                  picture: picServiceEngineering,
+                  title: m.home_capability_engineering_title(),
+                  href: "/services/engineering",
+                },
+                {
+                  alt: m.home_capability_uiux_title(),
+                  picture: picServiceUidesign,
+                  title: m.home_capability_uiux_title(),
+                  href: "/services/uiux",
+                },
+                {
+                  alt: m.home_capability_user_testing_title(),
+                  picture: picServiceUserTest,
+                  title: m.home_capability_user_testing_title(),
+                  href: "/services/usertest",
+                },
+                {
+                  alt: m.home_capability_open_source_title(),
+                  picture: picServiceOss,
+                  title: m.home_capability_open_source_title(),
+                  href: "/services/oss",
+                },
+              ].map((card, i) => (
+                <FadeIn key={card.href} delay={i * 80}>
+                  <CapabilityCard {...card} />
+                </FadeIn>
+              ))}
+            </div>
+          </section>
         </section>
 
         <section className="grid grid-cols-1 items-center gap-20 px-[var(--page-gutter)] py-10 md:grid-cols-2 lg:px-0 lg:py-0">

@@ -1,6 +1,6 @@
 ---
 title: "Look Look Look Exhibit"
-organization: "Creative Team"
+organization: "弱みを握る寿司屋"
 heroImage: "./009-looklooklook-exhibit.hero.jpg"
 ---
 

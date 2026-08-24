@@ -1,6 +1,6 @@
 ---
 title: "止止止展"
-organization: "クリエティブチーム"
+organization: "弱みを握る寿司屋"
 heroImage: "./007-tometometome-exhibit.hero.webp"
 ---
 

@@ -52,6 +52,36 @@ afterEach(() => {
 });
 
 describe("home desktop layout", () => {
+  it("shows AI as guidance shared by all three service disciplines", () => {
+    const elements = elementChildren(renderHomeTree());
+    const overviewSection = elements.find(
+      (element) =>
+        isValidElement(element) &&
+        element.type === "section" &&
+        elementChildren(element).some(
+          (child) => isValidElement(child) && child.props.role === "note",
+        ) &&
+        elementChildren(element).some(
+          (child) =>
+            isValidElement(child) &&
+            typeof child.type === "function" &&
+            child.type.name === "ServiceList",
+        ),
+    );
+    const aiGuidance = elementChildren(overviewSection).find(
+      (element) => isValidElement(element) && element.props.role === "note",
+    );
+    const serviceDisciplines = elementChildren(overviewSection).filter(
+      (element) =>
+        isValidElement(element) &&
+        typeof element.type === "function" &&
+        element.type.name === "ServiceList",
+    );
+
+    expect(aiGuidance).toBeDefined();
+    expect(serviceDisciplines).toHaveLength(3);
+  });
+
   it("narrows the service overview columns", () => {
     const elements = elementChildren(renderHomeTree());
     const overviewGrid = elements.find(
@@ -233,6 +263,18 @@ describe("home desktop layout", () => {
     expect(mobileBackground?.props.image).toBeTruthy();
   });
 
+  it("keeps the hero background as a photo without a WebGL overlay", () => {
+    const elements = elementChildren(renderHomeTree());
+    const aiField = elements.find(
+      (element) =>
+        isValidElement(element) &&
+        typeof element.type === "function" &&
+        element.type.name === "InteractiveAiField",
+    );
+
+    expect(aiField).toBeUndefined();
+  });
+
   it("does not repeat the Works heading in English", () => {
     const elements = elementChildren(renderHomeTree());
     const worksSection = elements.find(
@@ -279,6 +321,37 @@ describe("home desktop layout", () => {
 
     expect(imageFrame).toBeDefined();
     expect(imageFrame?.props.className).toContain("overflow-hidden");
+  });
+
+  it("presents AI acceleration separately from the core expertise", () => {
+    const elements = elementChildren(renderHomeTree());
+    const aiProcess = elements.find(
+      (element) =>
+        isValidElement(element) &&
+        element.type === "section" &&
+        element.props["aria-labelledby"] === "ai-development-process-heading",
+    );
+    const expertise = elements.find(
+      (element) =>
+        isValidElement(element) &&
+        element.type === "section" &&
+        element.props["aria-labelledby"] === "core-expertise-heading",
+    );
+
+    const aiSteps = elementChildren(aiProcess).filter(
+      (element) => isValidElement(element) && element.type === "article",
+    );
+    const expertiseLinks = elementChildren(expertise).filter(
+      (element) =>
+        isValidElement(element) &&
+        typeof element.type === "function" &&
+        element.type.name === "CapabilityCard",
+    );
+
+    expect(aiProcess).toBeDefined();
+    expect(aiSteps).toHaveLength(4);
+    expect(expertise).toBeDefined();
+    expect(expertiseLinks).toHaveLength(6);
   });
 
   it("removes the About image's outer gutter only on large screens", () => {

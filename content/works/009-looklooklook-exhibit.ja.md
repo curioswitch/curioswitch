@@ -1,6 +1,6 @@
 ---
 title: "見る見る見た目展"
-organization: "クリエティブチーム"
+organization: "弱みを握る寿司屋"
 heroImage: "./009-looklooklook-exhibit.hero.jpg"
 ---
 

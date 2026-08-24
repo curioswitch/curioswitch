@@ -1,6 +1,6 @@
 ---
 title: "Kurukuru Heroes Exhibit"
-organization: "Creative Team"
+organization: "弱みを握る寿司屋"
 heroImage: "./006-kurukuru-heros-exhibit.hero.jpg"
 ---
 

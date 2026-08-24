@@ -214,7 +214,7 @@ describe("home desktop layout", () => {
     expect(worksArrow?.props.className).toContain("z-20");
   });
 
-  it("renders the hero photo as a mobile banner directly before the content", () => {
+  it("renders the animated cell field directly before the content", () => {
     const elements = elementChildren(renderHomeTree());
     const backgroundBanner = elements.find(
       (element) =>
@@ -228,13 +228,13 @@ describe("home desktop layout", () => {
     expect(backgroundBanner?.props.className).toContain("md:h-[25rem]");
     expect(backgroundBanner?.props.style?.backgroundImage).toBeUndefined();
 
-    const mobileImage = elementChildren(backgroundBanner).find(
+    const cellularHero = elementChildren(backgroundBanner).find(
       (element) =>
         isValidElement(element) &&
         typeof element.type === "function" &&
-        element.type.name === "MobileFixedBackground",
+        element.type.name === "CellularHero",
     );
-    expect(mobileImage).toBeDefined();
+    expect(cellularHero).toBeDefined();
 
     const backgroundIndex = elements.indexOf(backgroundBanner as ReactElement);
     const contentWrapper = elements
@@ -250,7 +250,7 @@ describe("home desktop layout", () => {
     expect(contentWrapper?.props.className).not.toContain("mt-100");
   });
 
-  it("uses the mobile fixed-background treatment for the hero photo", () => {
+  it("replaces the fixed hero photo with the cellular animation", () => {
     const elements = elementChildren(renderHomeTree());
     const mobileBackground = elements.find(
       (element) =>
@@ -258,12 +258,18 @@ describe("home desktop layout", () => {
         typeof element.type === "function" &&
         element.type.name === "MobileFixedBackground",
     );
+    const cellularHero = elements.find(
+      (element) =>
+        isValidElement(element) &&
+        typeof element.type === "function" &&
+        element.type.name === "CellularHero",
+    );
 
-    expect(mobileBackground).toBeDefined();
-    expect(mobileBackground?.props.image).toBeTruthy();
+    expect(mobileBackground).toBeUndefined();
+    expect(cellularHero).toBeDefined();
   });
 
-  it("keeps the hero background as a photo without a WebGL overlay", () => {
+  it("does not add a WebGL overlay to the cellular background", () => {
     const elements = elementChildren(renderHomeTree());
     const aiField = elements.find(
       (element) =>
@@ -376,7 +382,21 @@ describe("home desktop layout", () => {
       (element) =>
         isValidElement(element) && hasText(element, m.home_about_title()),
     );
+    const curiositySwitch = aboutChildren.find(
+      (element) =>
+        isValidElement(element) &&
+        typeof element.type === "function" &&
+        element.type.name === "CuriosityBloomExperience",
+    );
+    const aboutPictures = aboutChildren.filter(
+      (element) =>
+        isValidElement(element) &&
+        typeof element.type === "function" &&
+        element.type.name === "Picture",
+    );
 
     expect(aboutCopy?.props.className).toContain("lg:pr-[var(--page-gutter)]");
+    expect(curiositySwitch?.props.label).toBe(m.home_curiosity_switch_label());
+    expect(aboutPictures).toHaveLength(0);
   });
 });

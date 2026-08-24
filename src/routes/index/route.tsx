@@ -9,8 +9,6 @@ import {
   MdWeb,
 } from "react-icons/md";
 
-import heroBackground from "../../assets/hero-background.jpeg";
-import picHomeAboutUs from "../../assets/home-about-us.jpg?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import picServiceCreativeLab from "../../assets/home-service-creativelab-cooking.png?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import picServiceDesign from "../../assets/home-service-design-exhibition.png?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import picServiceStudio from "../../assets/home-service-studio-concept-phone.png?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
@@ -20,8 +18,9 @@ import picServicePlanning from "../../assets/service-planning.webp?w=320;480;640
 import picServicePrototyping from "../../assets/service-prototyping.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServiceUidesign from "../../assets/service-uidesign.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServiceUserTest from "../../assets/service-usertest.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
+import { CellularHero } from "../../components/CellularHero";
+import { CuriosityBloomExperience } from "../../components/curiosity-bloom/CuriosityBloomExperience";
 import { FadeIn } from "../../components/FadeIn";
-import MobileFixedBackground from "../../components/MobileFixedBackground";
 import { NewsCard } from "../../components/NewsCard";
 import { Picture } from "../../components/Picture";
 import WorksCarousel from "../../components/WorksCarousel";
@@ -172,15 +171,7 @@ function Home() {
         id="mobile-hero-background-frame"
         className="relative aspect-[3/2] w-full overflow-hidden md:h-[25rem] md:aspect-auto"
       >
-        <MobileFixedBackground
-          image={heroBackground}
-          targetId="mobile-hero-background-frame"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat md:block md:bg-fixed md:bg-top md:bg-size-[100%_auto]"
-          style={{ backgroundImage: `url(${heroBackground})` }}
-        />
+        <CellularHero />
       </div>
 
       <div className="rounded-tl-[4rem] bg-white">
@@ -426,12 +417,7 @@ function Home() {
             direction="left"
             className="overflow-hidden rounded-xl lg:rounded-none lg:rounded-tr-4xl"
           >
-            <Picture
-              picture={picHomeAboutUs}
-              className="block w-full"
-              alt={m.home_about_image_alt()}
-              sizePreset="twoColumn"
-            />
+            <CuriosityBloomExperience label={m.home_curiosity_switch_label()} />
           </FadeIn>
           <FadeIn direction="right" className="lg:pr-[var(--page-gutter)]">
             <h2 className="mb-10 text-2xl md:text-3xl font-bold">

@@ -10,6 +10,55 @@
   --font-paragraph: "Lato", "Noto Sans JP Variable", system-ui, sans-serif;
 }
 
+@keyframes curiosity-bloom-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--bloom-rotation)) scale(0.05);
+  }
+  18% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--bloom-rotation)) scale(1.08);
+  }
+  72% {
+    opacity: 1;
+    transform: translate(-50%, -54%) rotate(calc(var(--bloom-rotation) + 5deg))
+      scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -62%) rotate(calc(var(--bloom-rotation) - 4deg))
+      scale(0.15);
+  }
+}
+
+@keyframes curiosity-bloom-fade {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  20%,
+  75% {
+    opacity: 1;
+  }
+}
+
+.curiosity-bloom-item {
+  position: absolute;
+  left: var(--bloom-x);
+  top: var(--bloom-y);
+  width: var(--bloom-size);
+  height: var(--bloom-size);
+  animation: curiosity-bloom-pop var(--bloom-duration) ease-out
+    var(--bloom-delay) both;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curiosity-bloom-item {
+    animation-name: curiosity-bloom-fade;
+  }
+}
+
 :root {
   --page-gutter: 1.5rem;
   --page-gutter-wide: 1.5rem;

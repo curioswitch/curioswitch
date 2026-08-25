@@ -103,3 +103,140 @@ p {
     transform: translateY(7px);
   }
 }
+
+@keyframes company-water-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -8vh, 0) scale(0.65);
+  }
+  12% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--water-drift), 112vh, 0) scale(1.1);
+  }
+}
+
+@keyframes company-watering-shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-2deg) translateX(-3px);
+  }
+  40% {
+    transform: rotate(2deg) translateX(3px);
+  }
+  60% {
+    transform: rotate(-1.5deg) translateX(-2px);
+  }
+  80% {
+    transform: rotate(1.5deg) translateX(2px);
+  }
+}
+
+@keyframes company-stem-grow {
+  from {
+    stroke-dashoffset: 260;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes company-leaf-open {
+  from {
+    opacity: 0;
+    transform: scale(0.05) rotate(-16deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes company-flower-open {
+  0% {
+    opacity: 0;
+    transform: scale(0.03) rotate(-24deg);
+  }
+  72% {
+    opacity: 1;
+    transform: scale(1.12) rotate(4deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.company-water-particle {
+  background: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 95%),
+    rgb(128 225 255 / 82%) 48%,
+    rgb(67 169 255 / 20%)
+  );
+  box-shadow:
+    0 0 12px rgb(125 225 255 / 85%),
+    0 0 28px rgb(112 194 255 / 48%);
+  animation: company-water-fall linear both;
+  will-change: transform, opacity;
+}
+
+.company-watering-trigger[data-watering="true"] {
+  animation: company-watering-shake 460ms ease-in-out 3;
+  transform-origin: 58% 72%;
+}
+
+.company-seed-image {
+  object-position: center var(--company-seed-y);
+}
+
+.company-grown-flower-anchor {
+  top: var(--company-seed-y);
+  transform: translate(-50%, calc(-100% - clamp(0.75rem, 2.5vw, 4rem)));
+}
+
+.company-grown-stem {
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: company-stem-grow 1.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.company-grown-leaf {
+  opacity: 0;
+  transform-box: fill-box;
+  animation: company-leaf-open 720ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.company-grown-leaf-left {
+  transform-origin: right center;
+  animation-delay: 520ms;
+}
+
+.company-grown-leaf-right {
+  transform-origin: left center;
+  animation-delay: 820ms;
+}
+
+.company-grown-blossom {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: company-flower-open 950ms cubic-bezier(0.22, 1, 0.36, 1) 1.15s
+    forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .company-water-particle,
+  .company-watering-trigger[data-watering="true"],
+  .company-grown-stem,
+  .company-grown-leaf,
+  .company-grown-blossom {
+    animation-duration: 1ms;
+    animation-delay: 0ms;
+  }
+}

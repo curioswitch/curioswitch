@@ -1,6 +1,6 @@
 ---
 title: "距離ざんまい展"
-organization: "クリエティブチーム"
+organization: "弱みを握る寿司屋"
 heroImage: "./008-distance-zanmai-exhibit.hero.png"
 ---
 

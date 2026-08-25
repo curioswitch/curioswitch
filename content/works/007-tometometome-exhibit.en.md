@@ -1,6 +1,6 @@
 ---
 title: "Stop, Stop, Stop Exhibit"
-organization: "Creative Team"
+organization: "弱みを握る寿司屋"
 heroImage: "./007-tometometome-exhibit.hero.webp"
 ---
 

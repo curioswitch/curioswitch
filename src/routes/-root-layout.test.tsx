@@ -18,7 +18,7 @@ function elementChildren(node: ReactNode): ReactNode[] {
 }
 
 describe("root document layout", () => {
-  it("contains horizontal overflow at the mobile root scroller", () => {
+  it("clips mobile horizontal overflow without creating root scrollers", () => {
     const Shell = Route.options.shellComponent;
     if (!Shell) {
       throw new Error("Root shell is not configured");
@@ -35,8 +35,10 @@ describe("root document layout", () => {
       (element) => isValidElement(element) && element.type === "body",
     );
 
-    expect(html?.props.className ?? "").toContain("overflow-x-hidden");
-    expect(body?.props.className ?? "").toContain("overflow-x-hidden");
+    expect(html?.props.className ?? "").toContain("overflow-x-clip");
+    expect(body?.props.className ?? "").toContain("overflow-x-clip");
+    expect(html?.props.className ?? "").not.toContain("overflow-x-hidden");
+    expect(body?.props.className ?? "").not.toContain("overflow-x-hidden");
   });
 
   it("reserves a viewport-height content area while a route is loading", () => {

@@ -1,6 +1,6 @@
 ---
 title: "活きの良いお金展"
-organization: "CurioSwitch"
+organization: "弱みを握る寿司屋"
 heroImage: "./004-active-money-exhibit.hero.jpg"
 ---
 

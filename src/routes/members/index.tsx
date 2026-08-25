@@ -3,9 +3,9 @@ import type { ReactNode } from "react";
 import type { Picture as ImageToolsPicture } from "vite-imagetools";
 
 import picMembersChoko from "../../assets/members-choko.jpg?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
-import picMembersHero from "../../assets/members-hero.jpg?w=640;960;1440;2160&format=avif;webp;jpg&as=picture";
 import picMembersKyon from "../../assets/members-kyon.jpg?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import { FadeIn } from "../../components/FadeIn";
+import { MembersWorkspace } from "../../components/MembersWorkspace";
 import { PageIntro } from "../../components/PageLayout";
 import { Picture } from "../../components/Picture";
 import { m } from "../../paraglide/messages";
@@ -195,12 +195,9 @@ function RouteComponent() {
         title={m.common_page_members()}
         description={<p>{m.members_description()}</p>}
       />
-      <Picture
-        picture={picMembersHero}
-        alt={m.members_hero_alt()}
-        className="h-48 w-full object-cover md:h-96"
-        priority
-        sizePreset="fullWidth"
+      <MembersWorkspace
+        label={m.members_workspace_alt()}
+        hint={m.members_workspace_hint()}
       />
       {memberProfiles.map((member, i) => (
         <FadeIn key={member.name} delay={i * 150}>

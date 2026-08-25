@@ -10,3 +10,6 @@ dist
 .firebase
 routeTree.gen.ts
 .DS_Store
+
+docs/superpowers
+

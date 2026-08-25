@@ -211,11 +211,11 @@ export function CellularHero() {
       "(prefers-reduced-motion: reduce)",
     ).matches;
     let cells: Cell[] = [];
-    let animationFrame = 0;
+    let animationFrame: number | null = null;
     let previousTime = 0;
     let width = 0;
     let height = 0;
-    let visible = true;
+    let visible = false;
     let burstSeed = 0;
     let puchiDecorations: ReturnType<typeof getPuchiDecorations> = [];
     let lastPointerBurstTime = Number.NEGATIVE_INFINITY;
@@ -598,38 +598,42 @@ export function CellularHero() {
     };
 
     const animate = (time: number) => {
-      if (visible) {
-        const deltaSeconds = clamp((time - previousTime) / 1_000, 0, 0.04);
-        update(deltaSeconds, time / 1_000);
-        draw(time / 1_000);
-      }
+      animationFrame = null;
+      if (!visible) return;
+
+      const deltaSeconds = clamp((time - previousTime) / 1_000, 0, 0.04);
+      update(deltaSeconds, time / 1_000);
+      draw(time / 1_000);
       previousTime = time;
       animationFrame = window.requestAnimationFrame(animate);
     };
 
-    const handlePointerMove = (event: PointerEvent) => {
-      const bounds = canvas.getBoundingClientRect();
-      pointer.active =
-        event.clientX >= bounds.left &&
-        event.clientX <= bounds.right &&
-        event.clientY >= bounds.top &&
-        event.clientY <= bounds.bottom;
-      if (!pointer.active) return;
+    const startAnimation = () => {
+      if (reduceMotion || !visible || animationFrame !== null) return;
 
-      pointer.x = event.clientX - bounds.left;
-      pointer.y = event.clientY - bounds.top;
+      previousTime = performance.now();
+      animationFrame = window.requestAnimationFrame(animate);
     };
 
-    const activateBurst = (clientX: number, clientY: number) => {
-      const bounds = canvas.getBoundingClientRect();
-      const index = startCuriosityBurst(
-        cells,
-        {
-          x: clientX - bounds.left,
-          y: clientY - bounds.top,
-        },
-        burstSeed,
-      );
+    const stopAnimation = () => {
+      if (animationFrame === null) return;
+
+      window.cancelAnimationFrame(animationFrame);
+      animationFrame = null;
+    };
+
+    const handlePointerMove = (event: PointerEvent) => {
+      pointer.active = true;
+      pointer.x = event.offsetX;
+      pointer.y = event.offsetY;
+    };
+
+    const handlePointerLeave = () => {
+      pointer.active = false;
+    };
+
+    const activateBurst = (x: number, y: number) => {
+      const index = startCuriosityBurst(cells, { x, y }, burstSeed);
       burstSeed += 1;
 
       if (index === null || !reduceMotion) return index;
@@ -646,26 +650,35 @@ export function CellularHero() {
     };
 
     const handlePointerDown = (event: PointerEvent) => {
-      if (activateBurst(event.clientX, event.clientY) !== null) {
+      if (activateBurst(event.offsetX, event.offsetY) !== null) {
         lastPointerBurstTime = performance.now();
       }
     };
 
     const handleClick = (event: MouseEvent) => {
       if (performance.now() - lastPointerBurstTime < 500) return;
-      activateBurst(event.clientX, event.clientY);
+      activateBurst(event.offsetX, event.offsetY);
     };
 
     const resizeObserver = new ResizeObserver(resize);
     const intersectionObserver = new IntersectionObserver(
       ([entry]) => {
         visible = entry.isIntersecting;
+        if (visible) {
+          startAnimation();
+        } else {
+          pointer.active = false;
+          stopAnimation();
+        }
       },
       { rootMargin: "100px" },
     );
     resizeObserver.observe(canvas);
     intersectionObserver.observe(canvas);
-    window.addEventListener("pointermove", handlePointerMove, {
+    canvas.addEventListener("pointermove", handlePointerMove, {
+      passive: true,
+    });
+    canvas.addEventListener("pointerleave", handlePointerLeave, {
       passive: true,
     });
     canvas.addEventListener("pointerdown", handlePointerDown, {
@@ -675,13 +688,10 @@ export function CellularHero() {
     resize();
     draw();
 
-    if (!reduceMotion) {
-      animationFrame = window.requestAnimationFrame(animate);
-    }
-
     return () => {
-      window.cancelAnimationFrame(animationFrame);
-      window.removeEventListener("pointermove", handlePointerMove);
+      stopAnimation();
+      canvas.removeEventListener("pointermove", handlePointerMove);
+      canvas.removeEventListener("pointerleave", handlePointerLeave);
       canvas.removeEventListener("pointerdown", handlePointerDown);
       canvas.removeEventListener("click", handleClick);
       for (const timer of reducedMotionTimers) window.clearTimeout(timer);

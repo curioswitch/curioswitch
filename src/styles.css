@@ -82,6 +82,10 @@ body {
   font-feature-settings: "palt";
 }
 
+:where(a, button, [role="button"]) {
+  touch-action: manipulation;
+}
+
 p {
   font-family: var(--font-paragraph);
 }

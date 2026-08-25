@@ -9,11 +9,11 @@ import {
   MdWeb,
 } from "react-icons/md";
 
+import picServiceOss from "../../../content/works/003-oss-projects.hero.png?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServiceCreativeLab from "../../assets/home-service-creativelab-cooking.png?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import picServiceDesign from "../../assets/home-service-design-exhibition.png?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import picServiceStudio from "../../assets/home-service-studio-concept-phone.png?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import picServiceEngineering from "../../assets/service-engineering.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
-import picServiceOss from "../../assets/service-oss-laptop.png?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServicePlanning from "../../assets/service-planning.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServicePrototyping from "../../assets/service-prototyping.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
 import picServiceUidesign from "../../assets/service-uidesign.webp?w=320;480;640;960&format=avif;webp;jpg&as=picture";
@@ -155,8 +155,9 @@ function Home() {
             <p className="text-gray-500">{m.common_brand_tagline()}</p>
           </FadeIn>
         </div>
-        <a
-          href="#works"
+        <Link
+          to="/"
+          hash="works"
           aria-label={m.home_scroll_to_works_label()}
           className="absolute right-8 bottom-0 z-20 flex h-20 w-20 translate-y-1/2 items-center justify-center rounded-full bg-black text-white shadow-[0_12px_32px_rgba(0,0,0,0.28)] transition-transform duration-300 hover:scale-110 md:right-20 md:h-32 md:w-32 lg:right-40"
         >
@@ -164,7 +165,7 @@ function Home() {
             size={32}
             style={{ animation: "arrow-float 1.8s ease-in-out infinite" }}
           />
-        </a>
+        </Link>
       </section>
 
       <div

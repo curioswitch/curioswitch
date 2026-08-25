@@ -68,14 +68,11 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang={getLocale()}
-      className="overflow-x-hidden md:overflow-x-visible"
-    >
+    <html lang={getLocale()} className="overflow-x-clip md:overflow-x-visible">
       <head>
         <HeadContent />
       </head>
-      <body className="overflow-x-hidden font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)] md:overflow-x-visible">
+      <body className="overflow-x-clip font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)] md:overflow-x-visible">
         <Header />
         <div className="min-h-dvh">{children}</div>
         <Footer />

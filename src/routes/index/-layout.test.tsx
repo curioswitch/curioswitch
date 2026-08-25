@@ -192,7 +192,6 @@ describe("home desktop layout", () => {
     const worksArrow = elements.find(
       (element) =>
         isValidElement(element) &&
-        element.type === "a" &&
         element.props["aria-label"] === m.home_scroll_to_works_label(),
     );
 
@@ -212,6 +211,9 @@ describe("home desktop layout", () => {
     expect(homeMain?.props.className).toContain("overflow-x-clip");
     expect(worksArrow?.props.className).toContain("lg:right-40");
     expect(worksArrow?.props.className).toContain("z-20");
+    expect(worksArrow?.props.to).toBe("/");
+    expect(worksArrow?.props.hash).toBe("works");
+    expect(worksArrow?.props.href).toBeUndefined();
   });
 
   it("renders the animated cell field directly before the content", () => {

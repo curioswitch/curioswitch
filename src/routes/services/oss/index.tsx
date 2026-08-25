@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import picServiceOss from "../../../assets/service-oss-laptop.png?w=640;960;1440;2160&format=avif;webp;jpg&as=picture";
+import picServiceOss from "../../../../content/works/003-oss-projects.hero.png?w=640;960;1440;2160&format=avif;webp;jpg&as=picture";
 import { PageIntro } from "../../../components/PageLayout";
 import { Picture } from "../../../components/Picture";
 import { m } from "../../../paraglide/messages";

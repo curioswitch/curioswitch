@@ -96,12 +96,14 @@ describe("MembersWorkspace", () => {
   it("reduces rendering work on mobile and removes motion when requested", () => {
     expect(getMembersWorkspaceConfig(390, false)).toEqual({
       animate: true,
+      maxFrameRate: 30,
       motionScale: 0.55,
       pixelRatioCap: 1,
       shadows: false,
     });
     expect(getMembersWorkspaceConfig(1280, true)).toEqual({
       animate: false,
+      maxFrameRate: 0,
       motionScale: 0,
       pixelRatioCap: 1,
       shadows: false,

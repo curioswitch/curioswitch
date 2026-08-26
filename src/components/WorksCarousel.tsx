@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import type { Work } from "content-collections";
 import useEmblaCarousel from "embla-carousel-react";
 import {
   MdBusiness,
@@ -7,11 +6,12 @@ import {
   MdKeyboardArrowRight,
 } from "react-icons/md";
 
+import type { WorkSummaryEntry } from "../lib/content-summaries";
 import { m } from "../paraglide/messages";
 
 import { Picture } from "./Picture";
 
-function CarouselWorkCard({ work }: { work: Work }) {
+function CarouselWorkCard({ work }: { work: WorkSummaryEntry }) {
   return (
     <Link
       to="/works/$slug"
@@ -42,7 +42,11 @@ function CarouselWorkCard({ work }: { work: Work }) {
   );
 }
 
-export default function WorksCarousel({ works }: { works: Work[] }) {
+export default function WorksCarousel({
+  works,
+}: {
+  works: WorkSummaryEntry[];
+}) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     breakpoints: {

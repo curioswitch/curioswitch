@@ -7,9 +7,9 @@ import { m } from "../../paraglide/messages";
 
 import { Route } from "./route";
 
-vi.mock("../../lib/content", () => ({
-  getLocalizedNews: () => [],
-  getLocalizedWorks: () => [],
+vi.mock("../../lib/content-summaries", () => ({
+  getLocalizedNewsSummaries: () => [],
+  getLocalizedWorkSummaries: () => [],
 }));
 
 function elementChildren(node: ReactNode): ReactNode[] {

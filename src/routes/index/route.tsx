@@ -24,7 +24,10 @@ import { FadeIn } from "../../components/FadeIn";
 import { NewsCard } from "../../components/NewsCard";
 import { Picture } from "../../components/Picture";
 import WorksCarousel from "../../components/WorksCarousel";
-import { getLocalizedNews, getLocalizedWorks } from "../../lib/content";
+import {
+  getLocalizedNewsSummaries,
+  getLocalizedWorkSummaries,
+} from "../../lib/content-summaries";
 import { m } from "../../paraglide/messages";
 import { getLocale } from "../../paraglide/runtime";
 
@@ -33,8 +36,8 @@ export const Route = createFileRoute("/")({
     const locale = getLocale();
 
     return {
-      news: getLocalizedNews(locale).slice(0, 3),
-      works: getLocalizedWorks(locale),
+      news: getLocalizedNewsSummaries(locale).slice(0, 3),
+      works: getLocalizedWorkSummaries(locale),
     };
   },
   component: Home,

@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import type { News } from "content-collections";
 
+import type { NewsSummaryEntry } from "../lib/content-summaries";
 import { getLocale } from "../paraglide/runtime";
 
 import { Picture } from "./Picture";
@@ -13,7 +13,7 @@ function formatDate(pubDate: string, locale: "ja" | "en") {
   }).format(new Date(pubDate));
 }
 
-export function NewsCard({ article }: { article: News }) {
+export function NewsCard({ article }: { article: NewsSummaryEntry }) {
   const locale = getLocale();
 
   return (

@@ -7,7 +7,7 @@ import viteReact from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { imagetools } from "vite-imagetools";
 
-const config = defineConfig(({ command }) => ({
+const config = defineConfig(() => ({
   resolve: {
     tsconfigPaths: true,
   },
@@ -39,15 +39,19 @@ const config = defineConfig(({ command }) => ({
         enabled: true,
         crawlLinks: true,
       },
-      router:
-        command === "serve"
-          ? {
-              // Avoid suspending the active route during HMR in dev.
-              codeSplittingOptions: {
-                defaultBehavior: [],
-              },
-            }
-          : undefined,
+      router: {
+        // Keep route data and its dependencies out of the global client entry.
+        // The router plugin adds HMR support to these splits in development.
+        codeSplittingOptions: {
+          defaultBehavior: [
+            ["loader"],
+            ["component"],
+            ["pendingComponent"],
+            ["errorComponent"],
+            ["notFoundComponent"],
+          ],
+        },
+      },
       spa: {
         maskPath: "/_shell",
         prerender: {

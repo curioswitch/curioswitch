@@ -5,16 +5,19 @@ import picWorksHero from "../../assets/works-hero.jpg?w=640;960;1440;2160&format
 import { FadeIn } from "../../components/FadeIn";
 import { PageIntro } from "../../components/PageLayout";
 import { Picture } from "../../components/Picture";
-import { getLocalizedWorks, type WorkEntry } from "../../lib/content";
+import {
+  getLocalizedWorkSummaries,
+  type WorkSummaryEntry,
+} from "../../lib/content-summaries";
 import { m } from "../../paraglide/messages";
 import { getLocale } from "../../paraglide/runtime";
 
 export const Route = createFileRoute("/works/")({
-  loader: () => getLocalizedWorks(getLocale()),
+  loader: () => getLocalizedWorkSummaries(getLocale()),
   component: RouteComponent,
 });
 
-function WorkCard({ work }: { work: WorkEntry }) {
+function WorkCard({ work }: { work: WorkSummaryEntry }) {
   return (
     <Link
       to="/works/$slug"

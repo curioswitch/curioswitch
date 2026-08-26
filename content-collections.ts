@@ -261,6 +261,35 @@ const news = defineCollection({
   },
 });
 
+const newsSummaries = defineCollection({
+  name: "newsSummaries",
+  directory: "content/news",
+  include: "**/*.{md,mdx}",
+  schema: z.object({
+    title: z.string(),
+    pubDate: z.string(),
+    content: z.string(),
+    heroImage: z.string(),
+  }),
+  transform: (document) => {
+    const { locale, slug } = getLocalizedContentMeta(document._meta.path, {
+      stripDatePrefix: true,
+    });
+
+    return {
+      title: document.title,
+      slug,
+      locale,
+      pubDate: new Date(document.pubDate).toISOString(),
+      heroPicture: resolvePictureAssetImport(
+        "content/news",
+        document,
+        document.heroImage,
+      ),
+    };
+  },
+});
+
 const legal = defineCollection({
   name: "legal",
   directory: "content/legal",
@@ -323,6 +352,40 @@ const works = defineCollection({
   },
 });
 
+const workSummaries = defineCollection({
+  name: "workSummaries",
+  directory: "content/works",
+  include: "**/*.{md,mdx}",
+  schema: z.object({
+    title: z.string(),
+    organization: z.string(),
+    content: z.string(),
+    heroImage: z.string(),
+  }),
+  transform: (document) => {
+    const { locale, slug } = getLocalizedContentMeta(document._meta.path, {
+      stripNumericPrefix: true,
+    });
+
+    return {
+      title: document.title,
+      organization: document.organization,
+      slug,
+      locale,
+      heroPicture: resolvePictureAssetImport(
+        "content/works",
+        document,
+        document.heroImage,
+      ),
+      order: getNumericPrefixOrder(document._meta.path),
+      excerpt: truncateText(
+        markdownToPlainText(document.content),
+        CONTENT_EXCERPT_LENGTH,
+      ),
+    };
+  },
+});
+
 export default defineConfig({
-  collections: [news, legal, works],
+  collections: [news, newsSummaries, legal, works, workSummaries],
 });

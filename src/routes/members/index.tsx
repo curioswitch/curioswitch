@@ -1,14 +1,42 @@
-import { createFileRoute } from "@tanstack/react-router";
-import type { ReactNode } from "react";
+import { ClientOnly, createFileRoute } from "@tanstack/react-router";
+import { lazy, type ReactNode, Suspense } from "react";
 import type { Picture as ImageToolsPicture } from "vite-imagetools";
 
 import picMembersChoko from "../../assets/members-choko.jpg?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
-import picMembersHero from "../../assets/members-hero.jpg?w=640;960;1440;2160&format=avif;webp;jpg&as=picture";
 import picMembersKyon from "../../assets/members-kyon.jpg?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import { FadeIn } from "../../components/FadeIn";
 import { PageIntro } from "../../components/PageLayout";
 import { Picture } from "../../components/Picture";
 import { m } from "../../paraglide/messages";
+
+const MembersWorkspace = lazy(
+  () => import("../../components/MembersWorkspace"),
+);
+
+function MembersWorkspaceFallback({ label }: { label: string }) {
+  return (
+    <>
+      <style>{`
+        .members-workspace-fallback {
+          height: 16rem;
+          width: 100%;
+          background: #ffd83d;
+        }
+
+        @media (min-width: 48rem) {
+          .members-workspace-fallback {
+            height: 24rem;
+          }
+        }
+      `}</style>
+      <div
+        className="members-workspace-fallback"
+        role="img"
+        aria-label={label}
+      />
+    </>
+  );
+}
 
 type MemberProfile = {
   career: string[];
@@ -188,6 +216,9 @@ function MemberCard({
 
 function RouteComponent() {
   const memberProfiles = getMemberProfiles();
+  const workspaceFallback = (
+    <MembersWorkspaceFallback label={m.members_workspace_alt()} />
+  );
 
   return (
     <main className="bg-white">
@@ -195,13 +226,14 @@ function RouteComponent() {
         title={m.common_page_members()}
         description={<p>{m.members_description()}</p>}
       />
-      <Picture
-        picture={picMembersHero}
-        alt={m.members_hero_alt()}
-        className="h-48 w-full object-cover md:h-96"
-        priority
-        sizePreset="fullWidth"
-      />
+      <ClientOnly fallback={workspaceFallback}>
+        <Suspense fallback={workspaceFallback}>
+          <MembersWorkspace
+            label={m.members_workspace_alt()}
+            hint={m.members_workspace_hint()}
+          />
+        </Suspense>
+      </ClientOnly>
       {memberProfiles.map((member, i) => (
         <FadeIn key={member.name} delay={i * 150}>
           <MemberCard {...member} />

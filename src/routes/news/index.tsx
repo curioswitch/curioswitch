@@ -3,12 +3,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FadeIn } from "../../components/FadeIn";
 import { NewsCard } from "../../components/NewsCard";
 import { PageIntro } from "../../components/PageLayout";
-import { getLocalizedNews } from "../../lib/content";
+import { getLocalizedNewsSummaries } from "../../lib/content-summaries";
 import { m } from "../../paraglide/messages";
 import { getLocale } from "../../paraglide/runtime";
 
 export const Route = createFileRoute("/news/")({
-  loader: () => getLocalizedNews(getLocale()),
+  loader: () => getLocalizedNewsSummaries(getLocale()),
   component: RouteComponent,
 });
 

@@ -3,7 +3,7 @@ import { lazy, type ReactNode, Suspense } from "react";
 import type { Picture as ImageToolsPicture } from "vite-imagetools";
 
 import picMembersChoko from "../../assets/members-choko.jpg?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
-import picMembersKyon from "../../assets/members-kyon.jpg?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
+import picMembersSkop from "../../assets/members-skop.jpg?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import { FadeIn } from "../../components/FadeIn";
 import { PageIntro } from "../../components/PageLayout";
 import { Picture } from "../../components/Picture";
@@ -84,22 +84,22 @@ function getMemberProfiles(): MemberProfile[] {
     },
     {
       name: "Skop",
-      image: picMembersKyon,
-      role: m.members_kyon_role(),
-      title: m.members_kyon_title(),
-      intro: [m.members_kyon_intro_1(), m.members_kyon_intro_2()],
+      image: picMembersSkop,
+      role: m.members_skop_role(),
+      title: m.members_skop_title(),
+      intro: [m.members_skop_intro_1(), m.members_skop_intro_2()],
       career: [
-        m.members_kyon_career_1(),
-        m.members_kyon_career_2(),
-        m.members_kyon_career_3(),
+        m.members_skop_career_1(),
+        m.members_skop_career_2(),
+        m.members_skop_career_3(),
       ],
-      education: [m.members_kyon_education_1(), m.members_kyon_education_2()],
+      education: [m.members_skop_education_1(), m.members_skop_education_2()],
       skills: [
-        m.members_kyon_skill_1(),
-        m.members_kyon_skill_2(),
-        m.members_kyon_skill_3(),
-        m.members_kyon_skill_4(),
-        m.members_kyon_skill_5(),
+        m.members_skop_skill_1(),
+        m.members_skop_skill_2(),
+        m.members_skop_skill_3(),
+        m.members_skop_skill_4(),
+        m.members_skop_skill_5(),
       ],
     },
   ];

@@ -11,6 +11,8 @@ Think Natureが扱う「生物多様性」という概念を直感的に伝え�
 
 複雑で専門的なテーマでありながらも、訪問者が感覚的に理解できる体験設計を意識しました。
 
+# CurioSwitchの担当
+
 CurioSwitchは主にキービジュアルの動画とサイトの企画・制作進行を担当しました。
 
 ![site](./012-thinknature-site-img1.png)

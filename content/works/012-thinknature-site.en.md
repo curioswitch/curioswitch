@@ -16,6 +16,8 @@ motion key visual.
 Even though the subject is complex and highly specialized, we designed the
 experience so visitors could grasp it intuitively.
 
+# CurioSwitch's Role
+
 CurioSwitch mainly handled planning and production management for the site, as
 well as the key visual motion.
 

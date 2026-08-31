@@ -8,6 +8,10 @@ heroImage: "./011-another-milk.hero.webp"
 
 生活クラブが取り組む“パスチャライズド牛乳”の魅力発信プロジェクトにおいて、一般の方が初めて飲んだ瞬間のリアクションをAIで解析し、“WOW値”として表示する仕組みを担当しました。
 
+## CurioSwitchの担当
+
+画像から7感情のうち「喜び」「驚き」をAIで解析するWOW値判定ツールを開発しました。
+
 - 動画から顔の特徴点を抽出
 - 7感情のうち「喜び」「驚き」をAIで解析
 - 最もWOW値が高かった瞬間を画像とスコアで表示
@@ -24,8 +28,6 @@ long ver: [https://youtu.be/d_QATD1ZL2w](https://youtu.be/d_QATD1ZL2w)
 ![demo](./011-another-milk-img2.webp)
 ![demo](./011-another-milk-img3.webp)
 ![demo](./011-another-milk-img4.webp)
-
-## CurioSwitchの取り組み
 
 CurioSwitchでは、\
 AI × 体験デザインを組み合わせ、\

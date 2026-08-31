@@ -10,6 +10,11 @@ As part of Seikatsu Club's project to communicate the appeal of pasteurized
 milk, we built a system that uses AI to analyze people's reactions the first
 time they taste it and display the result as a "WOW Score."
 
+## CurioSwitch's Role
+
+CurioSwitch developed a WOW Score tool that uses AI to analyze "joy" and
+"surprise" among seven emotions detected from images.
+
 - Extract facial landmarks from video
 - Use AI to analyze "joy" and "surprise" among seven emotions
 - Show the moment with the highest WOW Score as an image with a score
@@ -27,8 +32,6 @@ Long ver: [https://youtu.be/d_QATD1ZL2w](https://youtu.be/d_QATD1ZL2w)
 ![Demo](./011-another-milk-img2.webp)
 ![Demo](./011-another-milk-img3.webp)
 ![Demo](./011-another-milk-img4.webp)
-
-## CurioSwitch's Approach
 
 At CurioSwitch, we also take on projects that combine AI and experience
 design to make people's emotions and sense of surprise visible.

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import picCompanyHero from "../../assets/company-seed-hero.png?w=640;960;1440;2160&format=avif;webp;png&as=picture";
-import picCompanyMessage from "../../assets/company-watering-can-balanced.png?w=480;640;960;1280&format=avif;webp;png&as=picture";
+import picCompanyHero from "../../assets/company-seed-hero.png?w=640;960;1440;2160&format=avif;webp;jpg&as=picture";
+import picCompanyMessage from "../../assets/company-watering-can-balanced.png?w=480;640;960;1280&format=avif;webp;jpg&as=picture";
 import {
   CompanyGrowthProvider,
   CompanySeedScene,

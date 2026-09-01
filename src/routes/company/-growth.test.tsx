@@ -19,6 +19,8 @@ describe("company growth experience", () => {
     );
 
     expect(wateringCan).not.toBeNull();
-    expect(document.querySelector('[data-testid="company-seed-scene"]')).not.toBeNull();
+    expect(
+      document.querySelector('[data-testid="company-seed-scene"]'),
+    ).not.toBeNull();
   });
 });

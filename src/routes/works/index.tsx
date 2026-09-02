@@ -9,11 +9,13 @@ import {
   getLocalizedWorkSummaries,
   type WorkSummaryEntry,
 } from "../../lib/content-summaries";
+import { createPageMetadata } from "../../lib/metadata";
 import { m } from "../../paraglide/messages";
 import { getLocale } from "../../paraglide/runtime";
 
 export const Route = createFileRoute("/works/")({
   loader: () => getLocalizedWorkSummaries(getLocale()),
+  head: () => createPageMetadata(m.common_page_works()),
   component: RouteComponent,
 });
 

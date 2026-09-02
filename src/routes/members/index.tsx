@@ -7,6 +7,7 @@ import picMembersSkop from "../../assets/members-skop.jpg?w=480;640;960;1280&for
 import { FadeIn } from "../../components/FadeIn";
 import { PageIntro } from "../../components/PageLayout";
 import { Picture } from "../../components/Picture";
+import { createPageMetadata } from "../../lib/metadata";
 import { m } from "../../paraglide/messages";
 
 const MembersWorkspace = lazy(
@@ -106,6 +107,7 @@ function getMemberProfiles(): MemberProfile[] {
 }
 
 export const Route = createFileRoute("/members/")({
+  head: () => createPageMetadata(m.common_page_members()),
   component: RouteComponent,
 });
 

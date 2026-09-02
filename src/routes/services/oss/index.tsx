@@ -3,9 +3,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import picServiceOss from "../../../../content/works/003-oss-projects.hero.png?w=640;960;1440;2160&format=avif;webp;jpg&as=picture";
 import { PageIntro } from "../../../components/PageLayout";
 import { Picture } from "../../../components/Picture";
+import { createPageMetadata } from "../../../lib/metadata";
 import { m } from "../../../paraglide/messages";
 
 export const Route = createFileRoute("/services/oss/")({
+  head: () => createPageMetadata(m.home_capability_open_source_title()),
   component: RouteComponent,
 });
 

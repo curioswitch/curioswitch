@@ -39,6 +39,10 @@ const config = defineConfig(() => ({
         enabled: true,
         crawlLinks: true,
       },
+      sitemap: {
+        enabled: true,
+        host: import.meta.env.VITE_SITE_URL,
+      },
       router: {
         // Keep route data and its dependencies out of the global client entry.
         // The router plugin adds HMR support to these splits in development.

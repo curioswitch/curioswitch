@@ -8,7 +8,7 @@ import imgFavicon from "../assets/favicon.png";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { createBaseMetadata } from "../lib/metadata";
-import { getLocale } from "../paraglide/runtime";
+import { baseLocale, getLocale } from "../paraglide/runtime";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -33,6 +33,7 @@ export const Route = createRootRoute({
           content: "width=device-width, initial-scale=1",
         },
         ...createBaseMetadata({
+          isDomainHome: currentPathname === "/" && getLocale() === baseLocale,
           pathname: currentPathname,
         }).meta,
       ],

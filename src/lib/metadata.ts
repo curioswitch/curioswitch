@@ -15,7 +15,8 @@ export type SocialImageMetadata = {
 type HeadMeta =
   | { title: string }
   | { name: string; content: string }
-  | { property: string; content: string };
+  | { property: string; content: string }
+  | { "script:ld+json": Record<string, unknown> };
 
 function getSiteOrigin() {
   return new URL(import.meta.env.VITE_SITE_URL);
@@ -61,14 +62,33 @@ function createSocialImageMeta(
   ];
 }
 
-export function createBaseMetadata({ pathname }: { pathname: string }) {
+export function createBaseMetadata({
+  isDomainHome,
+  pathname,
+}: {
+  isDomainHome: boolean;
+  pathname: string;
+}) {
   const title = SITE_TITLE;
   const description = site_description();
   const url = toAbsoluteUrl(pathname);
+  const siteNameMeta: HeadMeta[] = isDomainHome
+    ? [
+        {
+          "script:ld+json": {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: SITE_NAME,
+            url: toAbsoluteUrl("/"),
+          },
+        },
+      ]
+    : [];
 
   return {
     meta: [
       { title },
+      ...siteNameMeta,
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
@@ -80,6 +100,18 @@ export function createBaseMetadata({ pathname }: { pathname: string }) {
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
       ...createSocialImageMeta(siteHeroSocialImage, SITE_NAME, "twitter"),
+    ] satisfies HeadMeta[],
+  };
+}
+
+export function createPageMetadata(pageTitle: string) {
+  const title = `${SITE_NAME} - ${pageTitle}`;
+
+  return {
+    meta: [
+      { title },
+      { property: "og:title", content: title },
+      { name: "twitter:title", content: title },
     ] satisfies HeadMeta[],
   };
 }

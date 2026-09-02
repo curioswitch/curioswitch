@@ -3,9 +3,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import picServiceUidesign from "../../../assets/service-uidesign.webp?w=640;960;1440;2160&format=avif;webp;jpg&as=picture";
 import { PageIntro } from "../../../components/PageLayout";
 import { Picture } from "../../../components/Picture";
+import { createPageMetadata } from "../../../lib/metadata";
 import { m } from "../../../paraglide/messages";
 
 export const Route = createFileRoute("/services/uiux/")({
+  head: () => createPageMetadata(m.home_capability_uiux_title()),
   component: RouteComponent,
 });
 

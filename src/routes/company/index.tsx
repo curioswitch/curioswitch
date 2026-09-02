@@ -10,10 +10,12 @@ import {
 import { FadeIn } from "../../components/FadeIn";
 import { PageIntro } from "../../components/PageLayout";
 import { Picture } from "../../components/Picture";
+import { createPageMetadata } from "../../lib/metadata";
 import { m } from "../../paraglide/messages";
 import { getLocale } from "../../paraglide/runtime";
 
 export const Route = createFileRoute("/company/")({
+  head: () => createPageMetadata(m.common_page_company()),
   component: RouteComponent,
 });
 

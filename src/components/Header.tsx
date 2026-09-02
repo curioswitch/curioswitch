@@ -127,7 +127,7 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 isolate px-4 md:px-8 backdrop-blur-lg">
         <nav className="page-wrap grid grid-cols-[1fr_auto] items-center py-4 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:py-0">
-          <h2 className="m-0 text-base font-semibold tracking-tight md:justify-self-start md:py-8">
+          <div className="text-base font-semibold tracking-tight md:justify-self-start md:py-8">
             <Link
               to="/"
               className="inline-flex items-center text-lg no-underline transition-opacity hover:opacity-70"
@@ -138,7 +138,7 @@ export default function Header() {
                 className="h-6 w-auto"
               />
             </Link>
-          </h2>
+          </div>
 
           <button
             type="button"

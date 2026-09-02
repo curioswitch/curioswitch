@@ -18,6 +18,31 @@ afterEach(() => {
 });
 
 describe("Header mobile menu", () => {
+  it("names the home logo after the brand without making it a heading", async () => {
+    vi.stubGlobal("scrollTo", vi.fn());
+
+    const rootRoute = createRootRoute({ component: Header });
+    const router = createRouter({
+      routeTree: rootRoute,
+      history: createMemoryHistory({ initialEntries: ["/"] }),
+    });
+
+    await router.load();
+    render(<RouterProvider router={router} />);
+
+    const header = document.querySelector("header");
+    if (!(header instanceof HTMLElement)) {
+      throw new Error("Header was not rendered");
+    }
+
+    const homeLogo = within(header).getByRole("link", {
+      name: "CurioSwitch",
+    });
+
+    expect(homeLogo.querySelector("img")?.alt).toBe("CurioSwitch");
+    expect(homeLogo.closest("h1, h2, h3, h4, h5, h6")).toBeNull();
+  });
+
   it("uses compact vertical padding in the mobile header", async () => {
     vi.stubGlobal("scrollTo", vi.fn());
 

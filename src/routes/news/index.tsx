@@ -4,11 +4,13 @@ import { FadeIn } from "../../components/FadeIn";
 import { NewsCard } from "../../components/NewsCard";
 import { PageIntro } from "../../components/PageLayout";
 import { getLocalizedNewsSummaries } from "../../lib/content-summaries";
+import { createPageMetadata } from "../../lib/metadata";
 import { m } from "../../paraglide/messages";
 import { getLocale } from "../../paraglide/runtime";
 
 export const Route = createFileRoute("/news/")({
   loader: () => getLocalizedNewsSummaries(getLocale()),
+  head: () => createPageMetadata(m.common_page_news()),
   component: RouteComponent,
 });
 

@@ -62,6 +62,12 @@ const config = defineConfig(() => ({
           enabled: true,
         },
       },
+      pages: [
+        {
+          path: "/robots.txt",
+          prerender: { enabled: true },
+        },
+      ],
     }),
     viteReact({
       babel: {

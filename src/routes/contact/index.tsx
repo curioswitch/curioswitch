@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { PageIntro } from "../../components/PageLayout";
+import { createPageMetadata } from "../../lib/metadata";
 import { m } from "../../paraglide/messages";
 import { getLocale } from "../../paraglide/runtime";
 
 export const Route = createFileRoute("/contact/")({
+  head: () => createPageMetadata(m.common_page_contact()),
   component: RouteComponent,
 });
 

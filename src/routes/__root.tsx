@@ -22,6 +22,13 @@ export const Route = createRootRoute({
 
   head: ({ matches }) => {
     const currentPathname = matches[matches.length - 1]?.pathname ?? "/";
+    const locale = getLocale();
+    const baseMetadata = createBaseMetadata({
+      isDomainHome: currentPathname === "/" && locale === baseLocale,
+      isIndexable: currentPathname !== "/_shell",
+      locale,
+      pathname: currentPathname,
+    });
 
     return {
       meta: [
@@ -32,12 +39,10 @@ export const Route = createRootRoute({
           name: "viewport",
           content: "width=device-width, initial-scale=1",
         },
-        ...createBaseMetadata({
-          isDomainHome: currentPathname === "/" && getLocale() === baseLocale,
-          pathname: currentPathname,
-        }).meta,
+        ...baseMetadata.meta,
       ],
       links: [
+        ...baseMetadata.links,
         {
           rel: "stylesheet",
           href: appCss,

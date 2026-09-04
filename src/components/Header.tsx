@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { MdClose, MdMenu } from "react-icons/md";
 
 import imgLogo from "../assets/logo.webp";
+import { normalizeSitePathname } from "../lib/localization";
 import { m } from "../paraglide/messages";
 import { getLocale, getUrlOrigin, localizeUrl } from "../paraglide/runtime";
 
@@ -59,7 +60,7 @@ function NavItemLink({
 }
 
 function toRelativeHref(url: URL) {
-  return `${url.pathname}${url.search}${url.hash}`;
+  return `${normalizeSitePathname(url.pathname)}${url.search}${url.hash}`;
 }
 
 function LanguageSwitcher({

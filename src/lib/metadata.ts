@@ -1,6 +1,14 @@
 import siteHeroSocialImage from "../assets/site-hero.png?w=1200&h=630&fit=cover&format=png&as=metadata";
 import { site_description } from "../paraglide/messages";
 
+import {
+  getLocalizedAlternateUrls,
+  getLocalizedPageUrl,
+  OPEN_GRAPH_LOCALES,
+  SITE_LOCALES,
+  type SiteLocale,
+} from "./localization";
+
 const SITE_TITLE = "CurioSwitch";
 const SITE_NAME = "CurioSwitch";
 const TWITTER_CARD = "summary_large_image";
@@ -17,6 +25,14 @@ type HeadMeta =
   | { name: string; content: string }
   | { property: string; content: string }
   | { "script:ld+json": Record<string, unknown> };
+
+type HeadLink =
+  | { rel: "canonical"; href: string }
+  | {
+      rel: "alternate";
+      href: string;
+      hreflang: SiteLocale | "x-default";
+    };
 
 function getSiteOrigin() {
   return new URL(import.meta.env.VITE_SITE_URL);
@@ -64,14 +80,37 @@ function createSocialImageMeta(
 
 export function createBaseMetadata({
   isDomainHome,
+  isIndexable = true,
+  locale,
   pathname,
 }: {
   isDomainHome: boolean;
+  isIndexable?: boolean;
+  locale: SiteLocale;
   pathname: string;
 }) {
   const title = SITE_TITLE;
   const description = site_description();
-  const url = toAbsoluteUrl(pathname);
+  const siteOrigin = getSiteOrigin();
+  const url = getLocalizedPageUrl(pathname, locale, siteOrigin);
+  const alternateUrls = getLocalizedAlternateUrls(pathname, siteOrigin);
+  const alternateOpenGraphLocale = SITE_LOCALES.find(
+    (candidateLocale) => candidateLocale !== locale,
+  );
+  const pageIdentityMeta: HeadMeta[] = isIndexable
+    ? [
+        { property: "og:url", content: url },
+        { property: "og:locale", content: OPEN_GRAPH_LOCALES[locale] },
+        ...(alternateOpenGraphLocale
+          ? [
+              {
+                property: "og:locale:alternate",
+                content: OPEN_GRAPH_LOCALES[alternateOpenGraphLocale],
+              },
+            ]
+          : []),
+      ]
+    : [{ name: "robots", content: "noindex" }];
   const siteNameMeta: HeadMeta[] = isDomainHome
     ? [
         {
@@ -92,15 +131,25 @@ export function createBaseMetadata({
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
-      { property: "og:url", content: url },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: SITE_NAME },
+      ...pageIdentityMeta,
       ...createSocialImageMeta(siteHeroSocialImage, SITE_NAME, "og"),
       { name: "twitter:card", content: TWITTER_CARD },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
       ...createSocialImageMeta(siteHeroSocialImage, SITE_NAME, "twitter"),
     ] satisfies HeadMeta[],
+    links: isIndexable
+      ? ([
+          { rel: "canonical", href: url },
+          ...alternateUrls.map(({ href, hreflang }) => ({
+            rel: "alternate" as const,
+            href,
+            hreflang,
+          })),
+        ] satisfies HeadLink[])
+      : [],
   };
 }
 

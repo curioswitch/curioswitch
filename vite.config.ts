@@ -7,6 +7,12 @@ import viteReact from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { imagetools } from "vite-imagetools";
 
+import {
+  normalizeSitePathname,
+  SITE_LOCALIZED_URL_PATTERNS,
+  SITE_URL_PATTERN,
+} from "./src/lib/localization.ts";
+
 const config = defineConfig(() => ({
   resolve: {
     tsconfigPaths: true,
@@ -21,12 +27,13 @@ const config = defineConfig(() => ({
       project: "./project.inlang",
       outdir: "./src/paraglide",
       strategy: ["url", "baseLocale"],
+      trailingSlash: "never",
       urlPatterns: [
         {
-          pattern: "/:path(.*)?",
+          pattern: SITE_URL_PATTERN,
           localized: [
-            ["en", "/en/:path(.*)?"],
-            ["ja", "/:path(.*)?"],
+            ["en", SITE_LOCALIZED_URL_PATTERNS.en],
+            ["ja", SITE_LOCALIZED_URL_PATTERNS.ja],
           ],
         },
       ],
@@ -38,6 +45,16 @@ const config = defineConfig(() => ({
       prerender: {
         enabled: true,
         crawlLinks: true,
+        filter: (page) => {
+          const isCanonicalPath =
+            normalizeSitePathname(page.path) === page.path;
+
+          if (!isCanonicalPath) {
+            page.sitemap = { ...page.sitemap, exclude: true };
+          }
+
+          return isCanonicalPath;
+        },
       },
       sitemap: {
         enabled: true,
@@ -64,8 +81,17 @@ const config = defineConfig(() => ({
       },
       pages: [
         {
+          path: "/privacy",
+          prerender: { enabled: true },
+        },
+        {
+          path: "/en/privacy",
+          prerender: { enabled: true },
+        },
+        {
           path: "/robots.txt",
           prerender: { enabled: true },
+          sitemap: { exclude: true },
         },
       ],
     }),

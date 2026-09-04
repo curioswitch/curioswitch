@@ -3,6 +3,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { CollectionContent } from "../../components/CollectionContent";
 import { ContentEntryPage } from "../../components/PageLayout";
 import { findLocalizedLegal } from "../../lib/content";
+import { createPageMetadata } from "../../lib/metadata";
 import { getLocale } from "../../paraglide/runtime";
 
 export const Route = createFileRoute("/privacy/")({
@@ -15,6 +16,8 @@ export const Route = createFileRoute("/privacy/")({
 
     return policy;
   },
+  head: ({ loaderData }) =>
+    loaderData ? createPageMetadata(loaderData.title) : {},
   component: RouteComponent,
 });
 

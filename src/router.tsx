@@ -8,6 +8,7 @@ export function getRouter() {
     routeTree,
 
     scrollRestoration: true,
+    trailingSlash: "never",
     defaultPreload: "intent",
     defaultPreloadStaleTime: 0,
 

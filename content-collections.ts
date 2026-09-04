@@ -11,6 +11,8 @@ import remarkGfm from "remark-gfm";
 import type { Picture as ImageToolsPicture } from "vite-imagetools";
 import { z } from "zod";
 
+import { assertCompleteTranslations } from "./src/lib/localization";
+
 const LOCALE_SUFFIX = /\.(ja|en)$/;
 const NEWS_DATE_PREFIX = /^\d{4}-\d{2}-\d{2}-/;
 const NUMERIC_PREFIX = /^\d+-/;
@@ -259,6 +261,7 @@ const news = defineCollection({
       ...(await compileDocument(context, document)),
     };
   },
+  onSuccess: (documents) => assertCompleteTranslations("news", documents),
 });
 
 const newsSummaries = defineCollection({
@@ -309,6 +312,7 @@ const legal = defineCollection({
       ...(await compileDocument(context, document)),
     };
   },
+  onSuccess: (documents) => assertCompleteTranslations("legal", documents),
 });
 
 const works = defineCollection({
@@ -350,6 +354,7 @@ const works = defineCollection({
       ...(await compileDocument(context, document)),
     };
   },
+  onSuccess: (documents) => assertCompleteTranslations("works", documents),
 });
 
 const workSummaries = defineCollection({

@@ -1,7 +1,7 @@
 ---
-title: '東京科学大学でデザイン思考の講義をしました'
-pubDate: '2026-02-11'
-heroImage: './2026-02-11-science-tokyo-design-seminar.hero.jpg'
+title: "東京科学大学でデザイン思考の講義をしました"
+pubDate: "2026-02-11"
+heroImage: "./2026-02-11-science-tokyo-design-seminar.hero.jpg"
 ---
 
 先日、東京科学大学にて「デザイン思考」をテーマにした特別講義を担当しました。\

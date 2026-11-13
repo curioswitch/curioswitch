@@ -54,6 +54,11 @@
       }
     }
   },
+  "markdown": {
+    "parser": {
+      "frontmatter": true
+    }
+  },
   "vcs": {
     "enabled": true,
     "clientKind": "git",

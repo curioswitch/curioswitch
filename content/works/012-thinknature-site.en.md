@@ -12,7 +12,6 @@ To communicate Think Nature's concept of biodiversity in an intuitive way, we
 expressed the branching structure of relationships among living things as a
 motion key visual.
 
-
 Even though the subject is complex and highly specialized, we designed the
 experience so visitors could grasp it intuitively.
 

@@ -1,7 +1,7 @@
 ---
-title: '東京科学大学でエンジニアリングの講義をしました'
-pubDate: '2026-02-11'
-heroImage: './2026-02-11-science-tokyo-engineering-seminar.hero.jpg'
+title: "東京科学大学でエンジニアリングの講義をしました"
+pubDate: "2026-02-11"
+heroImage: "./2026-02-11-science-tokyo-engineering-seminar.hero.jpg"
 ---
 
 先日、東京科学大学にて、エンジニアリングに関する特別講義を行いました。講義では、エンジニアの働き方や、エンジニアリングとは何か、どのように進めていくかなど開発現場で使われているワークフローについてお話ししました。
